@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportsAI Radar · 每日早报 · 视频版 2026-05-27</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0a0a0f; overflow: hidden; font-family: 'Noto Sans SC', sans-serif; }
+
+        .slide-container {
+            width: 100vw; height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            padding: 60px 80px;
+            background: #0a0a0f;
+        }
+        .slide.active { opacity: 1; }
+
+        /* Scene 1: Title */
+        .slide-1 .date {
+            font-family: 'Inter', monospace; font-size: 14px;
+            color: #4a9eff; letter-spacing: 4px; text-transform: uppercase;
+            margin-bottom: 24px; opacity: 0; transform: translateY(20px);
+        }
+        .slide-1 .brand {
+            font-size: 48px; font-weight: 900;
+            background: linear-gradient(135deg, #4a9eff, #00d4aa);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 12px; opacity: 0; transform: translateY(20px);
+        }
+        .slide-1 .subtitle {
+            font-family: 'Inter'; font-size: 16px; color: #6a6a80;
+            opacity: 0; transform: translateY(20px);
+        }
+        .slide-1.active .date { animation: fadeUp 0.6s 0.2s forwards; }
+        .slide-1.active .brand { animation: fadeUp 0.6s 0.5s forwards; }
+        .slide-1.active .subtitle { animation: fadeUp 0.6s 0.8s forwards; }
+
+        /* Scene 2: Core Judgment */
+        .slide-2 .label {
+            font-size: 12px; font-weight: 700; color: #4a9eff;
+            letter-spacing: 3px; text-transform: uppercase; margin-bottom: 32px;
+            opacity: 0;
+        }
+        .slide-2 .text {
+            font-size: 24px; font-weight: 500; color: #e8e8f0;
+            text-align: center; max-width: 800px; line-height: 1.6;
+            opacity: 0;
+        }
+        .slide-2 .keywords {
+            display: flex; gap: 16px; margin-top: 40px;
+            opacity: 0;
+        }
+        .slide-2 .kw {
+            padding: 8px 24px; border-radius: 24px;
+            background: rgba(74, 158, 255, 0.1); color: #4a9eff;
+            font-size: 14px; font-weight: 600;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+        }
+        .slide-2.active .label { animation: fadeIn 0.5s 0.2s forwards; }
+        .slide-2.active .text { animation: fadeIn 0.6s 0.5s forwards; }
+        .slide-2.active .keywords { animation: fadeIn 0.5s 1.0s forwards; }
+        .slide-2.active .kw:nth-child(1) { animation: fadeUp 0.4s 1.2s forwards; opacity: 0; }
+        .slide-2.active .kw:nth-child(2) { animation: fadeUp 0.4s 1.4s forwards; opacity: 0; }
+        .slide-2.active .kw:nth-child(3) { animation: fadeUp 0.4s 1.6s forwards; opacity: 0; }
+
+        /* Content slides (3-8) */
+        .content-slide .module-tag {
+            font-size: 12px; font-weight: 700; letter-spacing: 3px;
+            padding: 6px 20px; border-radius: 20px;
+            margin-bottom: 32px; opacity: 0;
+        }
+        .content-slide .title {
+            font-size: 22px; font-weight: 700; color: #e8e8f0;
+            text-align: center; max-width: 800px; line-height: 1.5;
+            margin-bottom: 24px; opacity: 0;
+        }
+        .content-slide .body {
+            font-size: 16px; color: #a0a0b8; text-align: center;
+            max-width: 700px; line-height: 1.8; opacity: 0;
+        }
+        .content-slide .signal {
+            margin-top: 24px; font-size: 11px; font-weight: 700;
+            padding: 4px 12px; border-radius: 4px; opacity: 0;
+        }
+
+        .content-slide.active .module-tag { animation: fadeUp 0.4s 0.1s forwards; opacity: 0; }
+        .content-slide.active .title { animation: fadeUp 0.5s 0.3s forwards; opacity: 0; }
+        .content-slide.active .body { animation: fadeUp 0.5s 0.6s forwards; opacity: 0; }
+        .content-slide.active .signal { animation: fadeUp 0.4s 0.9s forwards; opacity: 0; }
+
+        .tag-blue { background: rgba(74,158,255,0.15); color: #4a9eff; }
+        .tag-cyan { background: rgba(0,212,170,0.15); color: #00d4aa; }
+        .tag-purple { background: rgba(168,85,247,0.15); color: #a855f7; }
+        .tag-orange { background: rgba(255,107,53,0.15); color: #ff6b35; }
+        .tag-pink { background: rgba(255,77,141,0.15); color: #ff4d8d; }
+        .tag-yellow { background: rgba(251,191,36,0.15); color: #fbbf24; }
+        .sig-critical { background: rgba(239,68,68,0.15); color: #ef4444; }
+        .sig-watch { background: rgba(245,158,11,0.15); color: #f59e0b; }
+
+        /* Scene 7: Module 5 Special Highlight */
+        .slide-7 { background: linear-gradient(180deg, #0a0a0f 0%, #1a0a2e 50%, #0a0a0f 100%) !important; }
+        .slide-7 .formula {
+            font-family: 'Inter'; font-size: 32px; font-weight: 800;
+            margin-top: 16px; opacity: 0;
+        }
+        .slide-7 .formula-main {
+            color: #ff4d8d;
+        }
+        .slide-7 .formula-sub {
+            font-size: 16px; color: #a0a0b8; font-weight: 400;
+            margin-top: 8px; opacity: 0;
+        }
+        .slide-7.active .formula { animation: fadeIn 0.6s 0.8s forwards; opacity: 0; }
+        .slide-7.active .formula-sub { animation: fadeUp 0.4s 1.2s forwards; opacity: 0; }
+
+        /* Scene 8: Cross Domain Special */
+        .slide-8 { background: linear-gradient(180deg, #0a0a0f 0%, #1a1a0a 50%, #0a0a0f 100%) !important; }
+
+        /* Scene 9: Action List */
+        .slide-9 .label {
+            font-size: 12px; font-weight: 700; color: #00d4aa;
+            letter-spacing: 3px; margin-bottom: 32px; opacity: 0;
+        }
+        .slide-9 .actions {
+            text-align: left; max-width: 600px; width: 100%;
+        }
+        .slide-9 .action-item {
+            display: flex; align-items: flex-start; gap: 16px;
+            padding: 16px 0; border-bottom: 1px solid rgba(0,212,170,0.1);
+            opacity: 0;
+        }
+        .slide-9 .num {
+            font-family: 'Inter'; font-size: 20px; font-weight: 800;
+            color: #00d4aa; flex-shrink: 0; width: 32px;
+        }
+        .slide-9 .text {
+            font-size: 15px; color: #e8e8f0; line-height: 1.6;
+        }
+        .slide-9.active .label { animation: fadeIn 0.4s 0.1s forwards; opacity: 0; }
+        .slide-9.active .action-item:nth-child(1) { animation: fadeUp 0.4s 0.3s forwards; opacity: 0; }
+        .slide-9.active .action-item:nth-child(2) { animation: fadeUp 0.4s 0.5s forwards; opacity: 0; }
+        .slide-9.active .action-item:nth-child(3) { animation: fadeUp 0.4s 0.7s forwards; opacity: 0; }
+
+        /* Scene 10: End */
+        .slide-10 .end-text {
+            font-size: 36px; font-weight: 900;
+            background: linear-gradient(135deg, #4a9eff, #00d4aa);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            opacity: 0;
+        }
+        .slide-10 .end-sub {
+            font-family: 'Inter'; font-size: 14px; color: #6a6a80;
+            margin-top: 16px; opacity: 0;
+        }
+        .slide-10.active .end-text { animation: fadeUp 0.6s 0.2s forwards; opacity: 0; }
+        .slide-10.active .end-sub { animation: fadeUp 0.6s 0.5s forwards; opacity: 0; }
+
+        /* Start overlay - requires user interaction for audio autoplay */
+        .start-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(20px);
+        }
+        .start-overlay .play-circle {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: rgba(74, 158, 255, 0.15);
+            border: 2px solid rgba(74, 158, 255, 0.5);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        .start-overlay:hover .play-circle {
+            background: rgba(74, 158, 255, 0.25);
+            border-color: rgba(74, 158, 255, 0.8);
+            transform: scale(1.1);
+        }
+        .start-overlay .play-triangle {
+            width: 0; height: 0;
+            border-style: solid; border-width: 14px 0 14px 24px;
+            border-color: transparent transparent transparent #4a9eff;
+            margin-left: 6px;
+        }
+        .start-overlay .hint {
+            font-size: 14px; color: #a0a0b8; font-weight: 500;
+        }
+        .start-overlay .hint-sub {
+            font-family: 'Inter'; font-size: 12px; color: #6a6a80;
+            margin-top: 8px;
+        }
+        .start-overlay.hidden { display: none; }
+
+        /* Progress bar */
+        .progress {
+            position: fixed; bottom: 0; left: 0; height: 3px;
+            background: linear-gradient(90deg, #4a9eff, #00d4aa);
+            transition: width 0.3s linear; z-index: 10;
+        }
+
+        /* Slide progress (time within current slide) */
+        .slide-progress {
+            position: fixed; bottom: 3px; left: 0; height: 2px;
+            background: rgba(74, 158, 255, 0.3);
+            z-index: 10; width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed; bottom: 20px; right: 20px;
+            display: flex; gap: 8px; z-index: 10;
+        }
+        .ctrl-btn {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+            color: #e8e8f0; font-size: 16px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; backdrop-filter: blur(10px);
+        }
+        .ctrl-btn:hover { background: rgba(255,255,255,0.2); }
+
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+
+        <!-- Start Overlay (required for browser audio autoplay policy) -->
+        <div class="start-overlay" id="startOverlay">
+            <div class="play-circle">
+                <div class="play-triangle"></div>
+            </div>
+            <div class="hint">Click to Start</div>
+            <div class="hint-sub">SportsAI Radar &middot; Daily Brief &middot; 2026-05-27</div>
+        </div>
+
+        <!-- Scene 1: Title -->
+        <div class="slide slide-1 active" data-duration="5000">
+            <div class="date">2026 &middot; 05 &middot; 27 &middot; Wednesday</div>
+            <div class="brand">SportsAI Radar &middot; 每日早报</div>
+            <div class="subtitle">Sportswear &times; AI Radar &mdash; Daily Intelligence Brief</div>
+        </div>
+
+        <!-- Scene 2: Core Judgment -->
+        <div class="slide slide-2" data-duration="9000">
+            <div class="label">CORE JUDGMENT / 核心判断</div>
+            <div class="text">Agent从"工具层"进入"操作系统层"<br>各大厂商不再卖模型，而是卖完整的组织能力<br>运动鞋行业从"产品参数竞赛"转向"使用场景系统"</div>
+            <div class="keywords">
+                <div class="kw">Agent OS</div>
+                <div class="kw">场景系统</div>
+                <div class="kw">AI生成设计</div>
+            </div>
+        </div>
+
+        <!-- Scene 3: Module 1 -->
+        <div class="slide content-slide" data-duration="9000">
+            <div class="module-tag tag-blue">M1 &nbsp; 运动鞋服品牌 / 产品 / 营销</div>
+            <div class="title">Nike Pegasus：AI生成鞋面纹样直接进入编织产线</div>
+            <div class="body">消费者不再为技术参数买单<br>只为"可感知的体验升级"买单<br>——社群"轻科技主义"趋势确立</div>
+            <div class="signal sig-critical">CRITICAL</div>
+        </div>
+
+        <!-- Scene 4: Module 2 -->
+        <div class="slide content-slide" data-duration="8000">
+            <div class="module-tag tag-cyan">M2 &nbsp; 纺织工艺 / 材料 / 研发</div>
+            <div class="title">FFF Portland 首设 AI辅助设计专区<br>PUMA × Shincell 苏州共建物理发泡研发链路</div>
+            <div class="body">材料供应商从"提供材料"<br>升级为"提供设计到量产的完整解决方案"</div>
+            <div class="signal sig-critical">CRITICAL</div>
+        </div>
+
+        <!-- Scene 5: Module 3 -->
+        <div class="slide content-slide" data-duration="8000">
+            <div class="module-tag tag-purple">M3 &nbsp; 包装 / 零售 / 展厅</div>
+            <div class="title">高端包装从"好看"转向"可表现的智能体"</div>
+            <div class="body">NFC标签成本降至 $0.03/片<br>McKinsey：门店将被重写为"发现与服务界面"</div>
+            <div class="signal sig-critical">CRITICAL</div>
+        </div>
+
+        <!-- Scene 6: Module 4 -->
+        <div class="slide content-slide" data-duration="8000">
+            <div class="module-tag tag-orange">M4 &nbsp; AI 工具 / Agent / 工作流</div>
+            <div class="title">Google Astra Agent 正式开放<br>Anthropic 收入首次超越 OpenAI</div>
+            <div class="body">AI Agent 进入"日用品"时代<br>AI 编程工具进入免费时代</div>
+            <div class="signal sig-critical">CRITICAL</div>
+        </div>
+
+        <!-- Scene 7: Module 5 Deep Dive -->
+        <div class="slide content-slide slide-7" data-duration="13000">
+            <div class="module-tag tag-pink">M5 &nbsp; AI × 组织 / 商业变革</div>
+            <div class="title">麦肯锡：AI深度整合企业收入增长 2.3 倍<br>但 73% 企业只在试点，18% 进入生产</div>
+            <div class="body">
+                <div class="formula">
+                    <span class="formula-main">AI转型成功 = 技术 × 组织²</span>
+                </div>
+                <div class="formula-sub">组织准备度是平方关系——它决定了成败</div>
+            </div>
+            <div class="signal sig-critical">CRITICAL · 五维度深度分析见日报</div>
+        </div>
+
+        <!-- Scene 8: Cross Domain -->
+        <div class="slide content-slide slide-8" data-duration="8000">
+            <div class="module-tag tag-yellow">CROSS-DOMAIN &nbsp; 跨圈层阅读</div>
+            <div class="title">食品科技精密发酵 → AI按需生成纹样<br>SpaceX快速迭代 → 打样流程重构</div>
+            <div class="body">未来的创新者不是深耕一个领域的人<br>而是能在多个领域之间建立连接的人</div>
+        </div>
+
+        <!-- Scene 9: Action List -->
+        <div class="slide slide-9" data-duration="9000">
+            <div class="label">TODAY I WOULD WATCH / 今日优先盯三件事</div>
+            <div class="actions">
+                <div class="action-item">
+                    <div class="num">01</div>
+                    <div class="text">把样册升级为"使用场景→产品→证据链"叙事结构</div>
+                </div>
+                <div class="action-item">
+                    <div class="num">02</div>
+                    <div class="text">召开团队"AI工作流盘点会"，找到3个最容易见效的场景</div>
+                </div>
+                <div class="action-item">
+                    <div class="num">03</div>
+                    <div class="text">调研"智能鞋盒"方案（NFC + AR + 温变油墨）</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scene 10: End -->
+        <div class="slide slide-10" data-duration="4000">
+            <div class="end-text">明天见</div>
+            <div class="end-sub">SportsAI Radar · 每日早报 · Sportswear × AI Radar</div>
+        </div>
+    </div>
+
+    <div class="progress" id="progress" style="width:0%"></div>
+    <div class="slide-progress" id="slideProgress" style="width:0%"></div>
+
+    <div class="controls">
+        <button class="ctrl-btn" id="prevBtn" title="上一页">&#9664;</button>
+        <button class="ctrl-btn" id="playBtn" title="播放/暂停">&#9654;</button>
+        <button class="ctrl-btn" id="nextBtn" title="下一页">&#9654;&#9654;</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const progress = document.getElementById('progress');
+        const slideProgress = document.getElementById('slideProgress');
+        const overlay = document.getElementById('startOverlay');
+        let current = 0;
+        let playing = false;
+        let timer = null;
+        let slideTimer = null;
+        let audioPlayer = null;
+        let audioStarted = false;
+
+        const audioFiles = [
+            'audio/scene01.mp3', 'audio/scene02.mp3', 'audio/scene03.mp3',
+            'audio/scene04.mp3', 'audio/scene05.mp3', 'audio/scene06.mp3',
+            'audio/scene07.mp3', 'audio/scene08.mp3', 'audio/scene09.mp3',
+            'audio/scene10.mp3'
+        ];
+
+        // Start overlay - user interaction required for audio
+        overlay.addEventListener('click', () => {
+            overlay.classList.add('hidden');
+            playing = true;
+            updatePlayBtn();
+            showSlide(0);
+        });
+
+        // Also allow keyboard start
+        document.addEventListener('keydown', function startHandler(e) {
+            if (!audioStarted && (e.key === ' ' || e.key === 'Enter')) {
+                e.preventDefault();
+                overlay.classList.add('hidden');
+                audioStarted = true;
+                playing = true;
+                updatePlayBtn();
+                showSlide(0);
+                document.removeEventListener('keydown', startHandler);
+            }
+        });
+
+        function showSlide(idx) {
+            slides.forEach((s, i) => {
+                s.classList.toggle('active', i === idx);
+            });
+            progress.style.width = ((idx + 1) / slides.length * 100) + '%';
+            slideProgress.style.width = '0%';
+            clearInterval(slideTimer);
+
+            // Stop previous audio
+            if (audioPlayer) { audioPlayer.pause(); audioPlayer = null; }
+            clearTimeout(timer);
+
+            // Play audio for this slide
+            audioPlayer = new Audio(audioFiles[idx]);
+
+            audioPlayer.addEventListener('timeupdate', () => {
+                if (audioPlayer.duration) {
+                    const pct = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                    slideProgress.style.width = pct + '%';
+                }
+            });
+
+            audioPlayer.play().catch(() => {
+                // Audio failed, fallback to fixed duration
+                if (playing) {
+                    const duration = parseInt(slides[idx].dataset.duration);
+                    timer = setTimeout(() => advanceSlide(), duration);
+                    animateFallbackProgress(duration);
+                }
+            });
+
+            // When audio ends, advance to next slide
+            audioPlayer.onended = () => {
+                slideProgress.style.width = '100%';
+                if (playing) {
+                    timer = setTimeout(() => advanceSlide(), 600);
+                }
+            };
+
+            // Fallback: if audio is too long (> 2x duration), force advance
+            const maxDuration = parseInt(slides[idx].dataset.duration) * 2;
+            timer = setTimeout(() => {
+                if (playing && audioPlayer && !audioPlayer.paused) {
+                    audioPlayer.pause();
+                    advanceSlide();
+                }
+            }, maxDuration);
+        }
+
+        function animateFallbackProgress(duration) {
+            clearInterval(slideTimer);
+            let elapsed = 0;
+            slideTimer = setInterval(() => {
+                elapsed += 100;
+                const pct = (elapsed / duration) * 100;
+                slideProgress.style.width = Math.min(pct, 100) + '%';
+                if (elapsed >= duration) clearInterval(slideTimer);
+            }, 100);
+        }
+
+        function advanceSlide() {
+            clearTimeout(timer);
+            if (current < slides.length - 1) {
+                current++;
+                showSlide(current);
+            } else {
+                playing = false;
+                updatePlayBtn();
+            }
+        }
+
+        function updatePlayBtn() {
+            document.getElementById('playBtn').innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+        }
+
+        document.getElementById('prevBtn').onclick = () => {
+            if (current > 0) { current--; showSlide(current); }
+        };
+
+        document.getElementById('nextBtn').onclick = () => {
+            if (current < slides.length - 1) { current++; showSlide(current); }
+        };
+
+        document.getElementById('playBtn').onclick = () => {
+            if (!audioStarted) {
+                overlay.classList.add('hidden');
+                audioStarted = true;
+            }
+            playing = !playing;
+            updatePlayBtn();
+            if (playing) {
+                showSlide(current);
+            } else {
+                clearTimeout(timer);
+                clearInterval(slideTimer);
+                if (audioPlayer) audioPlayer.pause();
+            }
+        };
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (!audioStarted) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                if (current < slides.length - 1) { current++; showSlide(current); }
+            } else if (e.key === 'ArrowLeft') {
+                if (current > 0) { current--; showSlide(current); }
+            } else if (e.key === 'p') {
+                playing = !playing; updatePlayBtn();
+                if (playing) showSlide(current);
+            }
+        });
+    </script>
+</body>
+</html>
