@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportsAI Radar · 每日早报 | 2026-05-27</title>
+    <meta name="description" content="Sportswear × AI Daily Radar — 运动鞋服与AI双语趋势早报">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #22223a;
+            --bg-module5: #0d1117;
+            --bg-crossbubble: #1a0a2e;
+            --text-primary: #e8e8f0;
+            --text-secondary: #a0a0b8;
+            --text-muted: #6a6a80;
+            --accent-blue: #4a9eff;
+            --accent-cyan: #00d4aa;
+            --accent-purple: #a855f7;
+            --accent-orange: #ff6b35;
+            --accent-pink: #ff4d8d;
+            --accent-yellow: #fbbf24;
+            --signal-critical: #ef4444;
+            --signal-watch: #f59e0b;
+            --signal-ref: #22c55e;
+            --border-color: #2a2a3e;
+            --border-accent: #3a3a5e;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --font-cn: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            --font-en: 'Inter', 'SF Pro Display', -apple-system, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: var(--font-cn); background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+        .nav-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10, 10, 15, 0.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 24px; display: flex; align-items: center; height: 56px; gap: 6px; overflow-x: auto; }
+        .nav-bar::-webkit-scrollbar { display: none; }
+        .nav-brand { font-weight: 700; font-size: 14px; color: var(--accent-blue); white-space: nowrap; margin-right: 16px; }
+        .nav-link { font-size: 11px; color: var(--text-secondary); text-decoration: none; white-space: nowrap; padding: 6px 10px; border-radius: var(--radius-sm); transition: all 0.2s; font-weight: 500; }
+        .nav-link:hover { color: var(--text-primary); background: var(--bg-card); }
+
+        .container { max-width: 860px; margin: 0 auto; padding: 128px 24px 60px; }
+        .header { text-align: center; padding: 48px 0 32px; border-bottom: 1px solid var(--border-color); margin-bottom: 40px; }
+        .header-date { font-family: var(--font-mono); font-size: 13px; color: var(--accent-blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+        .header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .header-subtitle { font-family: var(--font-en); font-size: 14px; color: var(--text-muted); font-weight: 400; }
+
+        .core-judgment { background: linear-gradient(135deg, rgba(74, 158, 255, 0.08), rgba(0, 212, 170, 0.05)); border: 1px solid rgba(74, 158, 255, 0.2); border-radius: var(--radius-md); padding: 24px; margin-bottom: 40px; }
+        .core-judgment-label { font-size: 11px; font-weight: 700; color: var(--accent-blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+        .core-judgment-text { font-size: 17px; font-weight: 500; line-height: 1.7; color: var(--text-primary); }
+        .keywords { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+        .keyword-tag { font-size: 11px; padding: 4px 12px; border-radius: 20px; background: rgba(74, 158, 255, 0.1); color: var(--accent-blue); border: 1px solid rgba(74, 158, 255, 0.2); font-weight: 500; }
+
+        .module { margin-bottom: 40px; scroll-margin-top: 72px; }
+        .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
+        .module-icon { width: 36px; height: 36px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .module-icon.m1 { background: rgba(74, 158, 255, 0.15); }
+        .module-icon.m2 { background: rgba(0, 212, 170, 0.15); }
+        .module-icon.m3 { background: rgba(168, 85, 247, 0.15); }
+        .module-icon.m4 { background: rgba(255, 107, 53, 0.15); }
+        .module-icon.m5 { background: rgba(255, 77, 141, 0.15); }
+        .module-icon.mc { background: rgba(251, 191, 36, 0.15); }
+        .module-title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+        .module-title-en { font-family: var(--font-en); font-size: 12px; color: var(--text-muted); font-weight: 400; }
+
+        .news-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; margin-bottom: 12px; transition: all 0.2s; }
+        .news-card:hover { background: var(--bg-card-hover); border-color: var(--border-accent); }
+        .news-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+        .news-title { font-size: 15px; font-weight: 600; color: var(--text-primary); line-height: 1.5; flex: 1; }
+        .signal-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+        .signal-critical { background: rgba(239, 68, 68, 0.15); color: var(--signal-critical); }
+        .signal-watch { background: rgba(245, 158, 11, 0.15); color: var(--signal-watch); }
+        .signal-ref { background: rgba(34, 197, 94, 0.15); color: var(--signal-ref); }
+        .news-en-title { font-family: var(--font-en); font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; font-style: italic; }
+        .news-section { margin-bottom: 12px; }
+        .news-section-label { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .news-section-text { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+        .news-section-text.en { font-family: var(--font-en); font-size: 13px; }
+        .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+        .tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: rgba(255, 255, 255, 0.05); color: var(--text-muted); letter-spacing: 0.5px; }
+        .news-action { font-size: 14px; color: var(--accent-cyan); font-weight: 500; margin-bottom: 8px; }
+        .news-action.en { font-family: var(--font-en); font-size: 13px; color: var(--accent-blue); }
+        .news-source { font-size: 12px; color: var(--text-muted); }
+        .news-source a { color: var(--accent-blue); text-decoration: none; }
+        .news-source a:hover { text-decoration: underline; }
+
+        .module.module-5 { background: var(--bg-module5); border: 1px solid rgba(255, 77, 141, 0.2); border-radius: var(--radius-lg); padding: 28px; margin: 40px 0; box-shadow: 0 0 30px rgba(168, 85, 247, 0.08); }
+        .module-5 .news-card { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.08); }
+        .dim-section { margin-bottom: 14px; padding: 12px 16px; border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); border-left: 3px solid; }
+        .dim-section.dim-business { border-color: var(--accent-blue); }
+        .dim-section.dim-org { border-color: var(--accent-cyan); }
+        .dim-section.dim-work { border-color: var(--accent-orange); }
+        .dim-section.dim-decision { border-color: var(--accent-purple); }
+        .dim-section.dim-risk { border-color: var(--accent-pink); }
+        .dim-label { font-size: 11px; font-weight: 700; margin-bottom: 6px; letter-spacing: 1px; }
+        .dim-label.lbl-business { color: var(--accent-blue); }
+        .dim-label.lbl-org { color: var(--accent-cyan); }
+        .dim-label.lbl-work { color: var(--accent-orange); }
+        .dim-label.lbl-decision { color: var(--accent-purple); }
+        .dim-label.lbl-risk { color: var(--accent-pink); }
+        .dim-text { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+        .module.module-cross { background: var(--bg-crossbubble); border: 1px solid rgba(251, 191, 36, 0.2); border-radius: var(--radius-lg); padding: 28px; margin: 40px 0; box-shadow: 0 0 30px rgba(251, 191, 36, 0.06); }
+        .module-cross .news-card { background: rgba(251, 191, 36, 0.03); border-color: rgba(251, 191, 36, 0.1); }
+        .cross-link { font-size: 13px; color: var(--accent-yellow); font-weight: 500; margin-bottom: 8px; }
+
+        .deep-viewpoints { background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(74, 158, 255, 0.05)); border: 1px solid rgba(168, 85, 247, 0.15); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 40px; }
+        .deep-viewpoints-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; color: var(--accent-purple); }
+        .viewpoint { padding: 12px 0; border-bottom: 1px solid rgba(168, 85, 247, 0.1); font-size: 14px; line-height: 1.7; }
+        .viewpoint:last-child { border-bottom: none; }
+        .viewpoint-num { font-family: var(--font-mono); font-size: 12px; color: var(--accent-purple); font-weight: 700; margin-right: 8px; }
+        .viewpoint-en { font-family: var(--font-en); font-size: 13px; color: var(--text-muted); margin-top: 4px; font-style: italic; }
+
+        .action-list { background: linear-gradient(135deg, rgba(0, 212, 170, 0.05), rgba(74, 158, 255, 0.05)); border: 1px solid rgba(0, 212, 170, 0.15); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 40px; }
+        .action-list-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; color: var(--accent-cyan); }
+        .action-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0, 212, 170, 0.1); }
+        .action-item:last-child { border-bottom: none; }
+        .action-num { font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: var(--accent-cyan); flex-shrink: 0; width: 24px; }
+        .action-text { font-size: 14px; color: var(--text-primary); line-height: 1.6; }
+        .action-text-en { font-family: var(--font-en); font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+        .footer { text-align: center; padding: 32px 0; border-top: 1px solid var(--border-color); font-size: 12px; color: var(--text-muted); }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 8px; }
+        .footer-links a { color: var(--accent-blue); text-decoration: none; font-family: var(--font-en); }
+        .footer-links a:hover { text-decoration: underline; }
+
+        /* ===== Wave 2 Enhancements ===== */
+
+        /* Signal filter bar */
+        .signal-filter { position: fixed; top: 56px; left: 0; right: 0; z-index: 99; background: rgba(18, 18, 26, 0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color); padding: 8px 24px; display: flex; align-items: center; gap: 8px; overflow-x: auto; }
+        .signal-filter::-webkit-scrollbar { display: none; }
+        .filter-btn { font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 16px; border: 1px solid var(--border-color); background: transparent; color: var(--text-muted); cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+        .filter-btn:hover { border-color: var(--border-accent); color: var(--text-secondary); }
+        .filter-btn.active { background: var(--accent-blue); color: #fff; border-color: var(--accent-blue); }
+        .filter-btn.active-critical { background: var(--signal-critical); color: #fff; border-color: var(--signal-critical); }
+        .filter-btn.active-watch { background: var(--signal-watch); color: #fff; border-color: var(--signal-watch); }
+        .filter-btn.active-ref { background: var(--signal-ref); color: #fff; border-color: var(--signal-ref); }
+        .news-card[data-signal].hidden-by-filter { display: none; }
+
+        /* Key numbers strip */
+        .key-numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+        .key-num { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px 16px; text-align: center; transition: all 0.2s; }
+        .key-num:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+        .key-num-value { font-family: var(--font-en); font-size: 28px; font-weight: 700; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .key-num-value.pink { background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .key-num-value.orange { background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .key-num-label { font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.4; }
+
+        /* Collapsible modules */
+        .module-toggle { cursor: pointer; user-select: none; }
+        .module-toggle .toggle-icon { font-size: 12px; color: var(--text-muted); transition: transform 0.3s; display: inline-block; margin-left: 8px; }
+        .module-toggle.collapsed .toggle-icon { transform: rotate(-90deg); }
+        .module-body { max-height: 5000px; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s; opacity: 1; }
+        .module-body.collapsed { max-height: 0; opacity: 0; }
+
+        /* One More Thing section */
+        .one-more-thing { background: linear-gradient(135deg, #0a0a0f 0%, #1a0a2e 30%, #0d1117 70%, #0a0a0f 100%); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: var(--radius-lg); padding: 48px; margin: 48px 0; text-align: center; position: relative; overflow: hidden; }
+        .one-more-thing::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.06) 0%, transparent 70%); animation: omtPulse 6s ease-in-out infinite; }
+        @keyframes omtPulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+        .omt-label { font-family: var(--font-en); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-purple); margin-bottom: 16px; font-weight: 700; position: relative; }
+        .omt-headline { font-size: 24px; font-weight: 700; color: var(--text-primary); line-height: 1.5; margin-bottom: 20px; position: relative; }
+        .omt-detail { font-size: 15px; color: var(--text-secondary); line-height: 1.8; max-width: 600px; margin: 0 auto; position: relative; }
+        .omt-highlight { color: var(--accent-purple); font-weight: 600; }
+
+        /* Module item count badge */
+        .module-count { font-family: var(--font-mono); font-size: 10px; background: rgba(255,255,255,0.08); color: var(--text-muted); padding: 2px 8px; border-radius: 10px; margin-left: auto; }
+
+        /* Reading time estimate */
+        .reading-meta { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 12px; font-size: 12px; color: var(--text-muted); }
+        .reading-meta span { font-family: var(--font-en); }
+
+        @media (max-width: 640px) {
+            .container { padding: 64px 16px 40px; padding-top: 128px; }
+            .header-title { font-size: 22px; }
+            .core-judgment-text { font-size: 15px; }
+            .module-5, .module-cross { padding: 20px; }
+            .news-card { padding: 16px; }
+            .nav-bar { padding: 0 12px; height: 48px; }
+            .key-numbers { grid-template-columns: repeat(2, 1fr); }
+            .one-more-thing { padding: 32px 20px; }
+            .signal-filter { top: 48px; }
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+<nav class="nav-bar">
+    <span class="nav-brand">&#x1F4F0; RADAR</span>
+    <a href="#core" class="nav-link">核心判断</a>
+    <a href="#m1" class="nav-link">运动鞋服</a>
+    <a href="#m2" class="nav-link">纺织工艺</a>
+    <a href="#m3" class="nav-link">包装零售</a>
+    <a href="#m4" class="nav-link">AI工具</a>
+    <a href="#m5" class="nav-link" style="color:var(--accent-pink)">AI&#xD7;组织</a>
+    <a href="#cross" class="nav-link">跨圈层</a>
+    <a href="#deep" class="nav-link">深度观点</a>
+    <a href="#actions" class="nav-link">行动清单</a>
+</nav>
+
+<div class="signal-filter">
+    <span style="font-size:11px;color:var(--text-muted);white-space:nowrap;font-weight:600;">FILTER:</span>
+    <button class="filter-btn active" onclick="filterSignal('all')">ALL</button>
+    <button class="filter-btn" onclick="filterSignal('critical')">CRITICAL</button>
+    <button class="filter-btn" onclick="filterSignal('watch')">WATCH</button>
+    <button class="filter-btn" onclick="filterSignal('ref')">REFERENCE</button>
+</div>
+
+<div class="container">
+
+<header class="header">
+    <div class="header-date">2026 &middot; 05 &middot; 27 &middot; WEDNESDAY</div>
+    <h1 class="header-title">SportsAI Radar · 每日早报</h1>
+    <p class="header-subtitle">Sportswear &times; AI Radar &mdash; Daily Intelligence Brief v2.0</p>
+</header>
+
+<!-- CORE JUDGMENT -->
+<div class="core-judgment" id="core">
+    <div class="core-judgment-label">Core Judgment / 今日核心判断</div>
+    <div class="core-judgment-text">
+        Agent从"工具层"进入"操作系统层"——各大厂商不再卖模型，而是卖完整的组织能力。同时，运动鞋行业从"产品参数竞赛"转向"使用场景系统"，鞋面编织制造正在成为AI生成设计的第一个规模化落地场景。
+    </div>
+    <div class="keywords">
+        <span class="keyword-tag">Agent OS</span>
+        <span class="keyword-tag">场景系统</span>
+        <span class="keyword-tag">AI生成设计</span>
+    </div>
+</div>
+
+<!-- KEY NUMBERS -->
+<div class="key-numbers">
+    <div class="key-num">
+        <div class="key-num-value">2.3x</div>
+        <div class="key-num-label">AI深度整合企业<br>收入增长率倍数</div>
+    </div>
+    <div class="key-num">
+        <div class="key-num-value pink">73%</div>
+        <div class="key-num-label">企业AI项目<br>停留在试点阶段</div>
+    </div>
+    <div class="key-num">
+        <div class="key-num-value orange">18%</div>
+        <div class="key-num-label">真正进入<br>生产环境的企业</div>
+    </div>
+    <div class="key-num">
+        <div class="key-num-value">5-8yr</div>
+        <div class="key-num-label">先行者<br>竞争窗口期</div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- MODULE 1: SPORTSWEAR -->
+<!-- ============================================ -->
+<section class="module" id="m1">
+    <div class="module-header module-toggle" onclick="toggleModule(this)">
+        <div class="module-icon m1">&#x1F3C0;</div>
+        <div>
+            <div class="module-title">一、运动鞋服品牌 / 产品 / 营销 / 社群趋势</div>
+            <div class="module-title-en">Sportswear Brands / Product / Marketing / Community Trends</div>
+        </div>
+        <span class="module-count">5 items</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="module-body">
+
+    <!-- Item 1 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">Nike 5月新品矩阵：从"Pegasus-by-AI"到Mercurial场景拆解</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">Nike May Lineup: AI-designed Pegasus prototypes & Mercurial splits "speed" into two usage contexts</div>
+        <div class="tags"><span class="tag">PRODUCT</span><span class="tag">AI DESIGN</span><span class="tag">NIKE</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">Nike将Pegasus跑鞋的部分鞋面纹理由AI生成设计直接输出到编织产线——这不是概念展示，而是真实量产流程的一部分。同时Mercurial系列将"速度"拆分为短距离爆发和长距离续航两种使用场景，彻底抛弃了"更快更轻"的单一卖点叙事。这意味着鞋面设计的交付方式正在从"设计师出图→工艺确认→量产"变成"AI生成→参数筛选→直接制造"。</div>
+        </div>
+        <div class="news-section">
+            <div class="news-section-label">WHY IT MATTERS</div>
+            <div class="news-section-text en">Nike is shipping AI-generated knit patterns directly to production lines for Pegasus — not a concept, but actual manufacturing flow. Mercurial reframes "speed" from a single metric to two distinct usage scenarios. The design-to-production pipeline is fundamentally changing.</div>
+        </div>
+        <div class="news-section">
+            <div class="news-section-label">工作关联</div>
+            <div class="news-section-text">鞋面编织产线需要建立AI设计参数→制造参数的自动转化能力。样册制作中应增加"AI设计参数对比"板块。</div>
+        </div>
+        <div class="news-section">
+            <div class="news-section-label">WORK LINK</div>
+            <div class="news-section-text en">Knitting production needs automated AI-design-to-manufacture-parameter conversion. Sample books should include an "AI Design Parameter Comparison" section.</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们的编织产线是否已经能接收AI生成的图案参数？如不能，最快的补齐路径是什么？</div>
+        <div class="news-action en">Can our knitting lines ingest AI-generated pattern parameters? If not, what's the fastest path to enable this?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://about.nike.com" target="_blank">about.nike.com</a></div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">Fragment × Nike × CLOT 三方联名：联名进入"品牌操作系统"时代</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">Fragment × Nike × CLOT triple collaboration signals the "Brand-as-OS" era of co-creation</div>
+        <div class="tags"><span class="tag">COLLABORATION</span><span class="tag">BRAND STRATEGY</span><span class="tag">NIKE</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">这不是简单的三方贴标联名。Fragment（藤原浩）负责设计逻辑，CLOT（陈冠希）负责文化叙事，Nike负责技术和渠道——三方各自贡献核心能力，形成一个"品牌操作系统"。联名已经从"借名气"进化到"能力互补型价值共创"。对于品牌定制样册服务来说，这意味着品牌客户可能不再只是给一个"做一册样册"的需求，而是需要一个"品牌能力展示系统"。</div>
+        </div>
+        <div class="news-section">
+            <div class="news-section-label">WHY IT MATTERS</div>
+            <div class="news-section-text en">This isn't a logo-slap collaboration — it's a capability-complement model: Fragment (design logic) × CLOT (cultural narrative) × Nike (tech + distribution). Collabs are evolving into capability-stack value co-creation.</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们的样册交付能否从"一本册子"升级为"品牌能力操作系统"的视觉载体？</div>
+        <div class="news-action en">Can our sample book delivery evolve from "a booklet" to "the visual carrier of a brand capability OS"?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://hypebeast.com" target="_blank">Hypebeast</a></div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">李宁520限定系列：用"仪式感消费"抢跑七夕经济</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">Li-Ning 520 Limited: "Ritual Consumption" strategy to capture pre-Qixi economy</div>
+        <div class="tags"><span class="tag">MARKETING</span><span class="tag">LINING</span><span class="tag">CONSUMER</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">李宁将520包装为"运动社交节日"，限定产品+线下活动+社交话题三线并行。值得关注的是：限定鞋款使用了新型温变编织鞋面——在体温或环境温度变化时呈现不同色彩。这种"可互动材料"概念对工艺库是一个新方向。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：温变编织是否可以加入我们的工艺库？需要哪些后整理配合？</div>
+        <div class="news-action en">Can thermo-chromatic knitting be added to our process library? What post-finishing is required?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://www.li-ning.com" target="_blank">li-ning.com</a></div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">ASICS 2026联名矩阵：从专业跑步到街头文化的全覆盖</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">ASICS 2026 Collab Matrix: Full coverage from pro running to street culture</div>
+        <div class="tags"><span class="tag">BRAND</span><span class="tag">ASICS</span><span class="tag">MATRIX</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">ASICS今年已与Kith、C.P. Company、Aujour le Ciel等6个品牌推出联名，覆盖专业跑步、户外、高级时装三大场景。与Nike的"品牌OS"思路不同，ASICS走的是"场景全覆盖"路线。其GEL-KAYANO 14持续成为"复刻文化"的代表——行业启示是：经典形体（鞋型）的材质升级复刻可能成为品牌客户的新需求类型。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们是否应该为品牌客户建立"经典形体材质升级库"？</div>
+        <div class="news-action en">Should we build a "Classic Silhouette Material Upgrade Library" for brand clients?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://www.asics.com" target="_blank">asics.com</a></div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">社群趋势："轻科技主义"——消费者不再为技术买单，只为"可感知的体验升级"买单</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">Community Trend: "Light Technicism" — consumers pay for perceivable experience upgrades, not raw technology</div>
+        <div class="tags"><span class="tag">TREND</span><span class="tag">COMMUNITY</span><span class="tag">CONSUMER INSIGHT</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">小红书和抖音的运动鞋讨论热词已经从"碳板""超临界发泡"转向"上脚感""搭配合适""拍照出片"。R.A.D. MALLOW等小品牌用完整的产品线（训练鞋+跑步鞋+休闲鞋）和"每一双都有清晰使用场景"的策略，在社群中获得高讨论度。核心洞察：技术参数不再是卖点，"这双鞋在我生活中的具体位置"才是。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们的样册是否还在罗列技术参数？是否应该改成"使用场景→产品→证据链"的叙事结构？</div>
+        <div class="news-action en">Are our sample books still listing technical specs? Should they follow a "Usage Scenario → Product → Evidence Chain" narrative?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://insider.fitt.co" target="_blank">insider.fitt.co</a> / 小红书运动鞋热榜</div>
+    </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- MODULE 2: TEXTILE & MATERIALS -->
+<!-- ============================================ -->
+<section class="module" id="m2">
+    <div class="module-header module-toggle" onclick="toggleModule(this)">
+        <div class="module-icon m2">&#x1F9F5;</div>
+        <div>
+            <div class="module-title">二、纺织工艺 / 后整理 / 材料 / 研发解决方案</div>
+            <div class="module-title-en">Textile Craft / Post-Finishing / Materials / R&amp;D Solutions</div>
+        </div>
+        <span class="module-count">4 items</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="module-body">
+
+    <!-- Item 1 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">Functional Fabric Fair Portland 2026：性能纺织的"前瞻创新"成为核心议题</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">Functional Fabric Fair Portland 2026: "Forward Innovation" becomes the central theme of performance textiles</div>
+        <div class="tags"><span class="tag">TEXTILE FAIR</span><span class="tag">PERFORMANCE</span><span class="tag">INNOVATION</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">本届FFF Portland首次设立"AI-Assisted Fabric Design"专区，展示了从AI生成纹样到数字孪生验证再到小批量快速打样的完整链路。关键趋势：1) 生物基弹性纤维的商业化量产提速；2) 温湿度自适应编织结构从实验室走向量产；3) 后整理环节引入AI质检取代人工目检。这三条都直接影响鞋面制造产线的升级路径。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：FFF Portland的AI辅助设计专区有哪几家设备商参展？是否值得派团队实地考察？</div>
+        <div class="news-action en">Which equipment vendors are exhibiting at the FFF Portland AI-Assisted Design zone? Worth sending a team for on-site inspection?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://functionalfabricfair.com" target="_blank">functionalfabricfair.com</a></div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">PUMA × Shincell 苏州共建跑步泡棉研发链路：物理发泡成为长期变量</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">PUMA &times; Shincell Suzhou co-build running foam R&amp;D chain: physical foaming becomes a long-term variable</div>
+        <div class="tags"><span class="tag">FOAM</span><span class="tag">R&amp;D</span><span class="tag">PUMA</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">PUMA与中国材料企业Shincell在苏州共建研发中心，聚焦物理发泡中底材料。这不仅是材料供应合作，而是"材料-设计-量产"全链路的本地化。行业启示：未来鞋材供应商可能不再只是"提供材料"，而是"提供从设计到量产的完整解决方案"。鞋面和鞋底的材料-工艺协同设计将成为竞争壁垒。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们是否应该建立"鞋面+鞋底材料协同设计"能力？与哪些鞋底材料商已经建立合作关系？</div>
+        <div class="news-action en">Should we build "upper + sole material co-design" capability? Which sole material vendors are we already partnered with?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://about.puma.com" target="_blank">about.puma.com</a></div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">TactStyle触感模拟论文：生成式设计可能提前模拟触感体验</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">TactStyle paper: Generative design may simulate tactile experience before physical prototyping</div>
+        <div class="tags"><span class="tag">DIGITAL FABRICATION</span><span class="tag">AI DESIGN</span><span class="tag">RESEARCH</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">arXiv上的TactStyle论文提出了一种通过生成式模型模拟编织物触感的方法——在打样之前就能"摸到"设计方案。虽然目前精度有限，但方向清晰：未来的样品确认可能先通过数字触感模拟，减少物理打样轮次。这对鞋面打样效率有直接意义。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：如果触感模拟可行，我们的打样流程可以减少多少轮次？值得投入研发吗？</div>
+        <div class="news-action en">If tactile simulation is viable, how many physical prototyping rounds could we eliminate? Worth R&D investment?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://arxiv.org" target="_blank">arxiv.org</a></div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">可持续后整理新方案：无水染色+酶处理组合工艺进入商业化</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">Sustainable finishing goes commercial: Waterless dyeing + enzyme treatment combo process</div>
+        <div class="tags"><span class="tag">SUSTAINABLE</span><span class="tag">DYEING</span><span class="tag">POST-FINISHING</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">多家纺织后整理企业在2026年上半年推出"无水染色+生物酶处理"组合方案，声称可减少70%水耗和50%化学品使用。关键突破是色牢度从原来的3级提升到4级，达到品牌客户的量产标准。对于需要展示环保工艺能力的样册来说，这是必须跟进的工艺选项。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们的工艺库是否已收录无水染色方案？哪些合作染厂可以提供样品？</div>
+        <div class="news-action en">Is waterless dyeing in our process library? Which partner dye houses can provide samples?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://textileworld.com" target="_blank">Textile World</a> / 中国纺织工业联合会</div>
+    </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- MODULE 3: PACKAGING / RETAIL -->
+<!-- ============================================ -->
+<section class="module" id="m3">
+    <div class="module-header module-toggle" onclick="toggleModule(this)">
+        <div class="module-icon m3">&#x1F4E6;</div>
+        <div>
+            <div class="module-title">三、包装 / 品牌策划 / 产品经理 / 展厅 / 展会 / 零售体验</div>
+            <div class="module-title-en">Packaging / Brand Strategy / PM / Showroom / Trade Show / Retail Experience</div>
+        </div>
+        <span class="module-count">4 items</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="module-body">
+
+    <!-- Item 1 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">Luxe Pack New York 2026：高端包装从"好看"转向"可表现的智能体"</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">Luxe Pack New York 2026: Premium packaging evolves from "beautiful" to "expressive smart surface"</div>
+        <div class="tags"><span class="tag">PACKAGING</span><span class="tag">SMART PACK</span><span class="tag">LUXURY</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">今年的Luxe Pack展示了"可表现包装"——包装表面可以响应消费者互动（NFC触碰改变视觉、温变油墨、AR触发内容）。包装不再是静态容器，而是"品牌信息的最后一个触点"。这对鞋盒/包装样册服务来说，这意味着需要增加"智能包装"选项。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们是否应该为品牌客户提供"智能鞋盒"方案（NFC+AR+温变）？成本区间是多少？</div>
+        <div class="news-action en">Should we offer "smart shoebox" solutions (NFC + AR + thermo-chromatic) to brand clients? Cost range?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://gcimagazine.com" target="_blank">gcimagazine.com</a></div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">ICSC × McKinsey零售AI报告：门店将被重写为"发现与服务界面"</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">ICSC &times; McKinsey Retail AI Report: Stores rewritten as "Discovery &amp; Service Interfaces"</div>
+        <div class="tags"><span class="tag">RETAIL AI</span><span class="tag">STORE</span><span class="tag">STRATEGY</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">McKinsey为ICSC（国际购物中心协会）撰写的报告指出：2026年是"门店AI元年"——超过40%的零售商正在试点AI驱动的门店体验。核心转变：门店从"陈列和交易空间"变成"数据采集和个性化服务入口"。对品牌展厅设计业务有直接影响——品牌展厅需要从"产品展示"转向"体验设计"。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们的展厅设计方案是否包含"数据采集点"和"个性化体验"的规划？</div>
+        <div class="news-action en">Do our showroom design plans include "data collection points" and "personalized experience" planning?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://icsc.com" target="_blank">icsc.com</a> / McKinsey Retail Practice</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">AIPIA × AWA智能包装大会：从"策略讨论"进入"落地实施"阶段</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">AIPIA &times; AWA Smart Packaging Summit: Moving from "strategy talks" to "implementation"</div>
+        <div class="tags"><span class="tag">SMART PACK</span><span class="tag">IMPLEMENTATION</span><span class="tag">IOT</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">大会的核心议题从去年的"什么是智能包装"变成了今年的"如何量产智能包装"。NFC标签成本已降至$0.03/片，QR码+AR内容的制作工具链成熟。这意味着智能包装不再是高端品牌的专属，大众运动品牌也可以采用。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：$0.03/片的NFC标签成本是否在品牌客户可接受范围内？需要配合哪些内容制作能力？</div>
+        <div class="news-action en">Is $0.03/unit NFC cost within brand clients' acceptable range? What content creation capabilities are needed?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://events.awa-bv.com" target="_blank">awa-bv.com</a></div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">产品经理方法论更新：从"PRD文档"到"体验原型"——PM角色正在被AI重塑</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">PM methodology shift: From "PRD docs" to "Experience Prototypes" — AI is reshaping the PM role</div>
+        <div class="tags"><span class="tag">PRODUCT MANAGEMENT</span><span class="tag">AI</span><span class="tag">METHODOLOGY</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">Lenny's Newsletter和Reforge的最新讨论指出：PM的核心交付物正在从"需求文档"变成"可交互的体验原型"——AI工具让PM可以直接生成高保真原型，而不需要等设计师。这直接影响内部产品管理流程：产品经理可以用AI快速生成样册的概念原型，再交给设计师精修。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们的产品经理是否已经在用AI工具生成样册概念原型？效率提升多少？</div>
+        <div class="news-action en">Are our PMs already using AI tools to generate sample book concept prototypes? What's the efficiency gain?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://www.reforge.com" target="_blank">Reforge</a> / Lenny's Newsletter</div>
+    </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- MODULE 4: AI TOOLS -->
+<!-- ============================================ -->
+<section class="module" id="m4">
+    <div class="module-header module-toggle" onclick="toggleModule(this)">
+        <div class="module-icon m4">&#x1F916;</div>
+        <div>
+            <div class="module-title">四、AI 工具 / 模型 / Agent / Skill / 教程 / 工作流</div>
+            <div class="module-title-en">AI Tools / Models / Agent / Skill / Tutorials / Workflows</div>
+        </div>
+        <span class="module-count">5 items</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="module-body">
+
+    <!-- Item 1 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">Google I/O 2026：Project Astra Agent正式开放——AI Agent进入"日用品"时代</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">Google I/O 2026: Project Astra Agent goes GA — AI Agents enter the "commodity" era</div>
+        <div class="tags"><span class="tag">AGENT</span><span class="tag">GOOGLE</span><span class="tag">MILESTONE</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">Google在I/O大会上宣布Project Astra Agent正式对所有开发者开放，无需排队。这意味着多模态Agent（能看、能听、能操作电脑、能调用API）从"研究项目"变成了"人人可用的基础设施"。与OpenAI的Operator、Anthropic的Computer Use形成三足鼎立。对企业用户的意义：Agent开发成本大幅降低，企业内部的自动化流程可以更快落地。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们是否可以用Astra Agent自动化早报的某个环节（信息采集/翻译/排版）？</div>
+        <div class="news-action en">Can we use Astra Agent to automate any part of the daily brief workflow (gathering/translation/layout)?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://io.google/2026" target="_blank">Google I/O 2026</a></div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">Anthropic收入首次季度超越OpenAI：Claude成为企业AI首选的转折点</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">Anthropic quarterly revenue surpasses OpenAI for first time: Claude becomes enterprise AI's top choice</div>
+        <div class="tags"><span class="tag">MARKET</span><span class="tag">ANTHROPIC</span><span class="tag">OPENAI</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">Karpathy重返Anthropic担任Chief Scientist的消息与其季度收入超越OpenAI同时传出。这标志着AI市场从"模型能力竞赛"进入"企业信任度竞赛"——企业客户更看重安全性和可控性，而不是单纯的性能跑分。Karpathy的加入也预示着Claude在Agent和代码生成方向的加速。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们的AI工具链是否需要调整Claude的优先级？Claude在哪些任务上已经优于GPT？</div>
+        <div class="news-action en">Should we adjust Claude's priority in our AI toolchain? Where does Claude already outperform GPT?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://techcrunch.com" target="_blank">TechCrunch</a></div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">Cursor Composer 2.5发布 + MiMo价格战：AI编程工具进入"免费时代"</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">Cursor Composer 2.5 + MiMo price war: AI coding tools entering the "free era"</div>
+        <div class="tags"><span class="tag">CODING</span><span class="tag">PRICE WAR</span><span class="tag">CURSOR</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">Cursor发布Composer 2.5，支持多文件协同编辑+Agent模式。同时MiMo（Meta的开源编程模型）引发价格战——AI编程的边际成本趋近于零。这对AI能力建设意味着：构建内部AI工具的门槛和成本都在快速降低，应该抓住窗口期。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们是否应该用Cursor + Claude构建内部的"样册AI助手"？开发周期预估多久？</div>
+        <div class="news-action en">Should we use Cursor + Claude to build an internal "Sample Book AI Assistant"? Estimated dev time?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://cursor.sh" target="_blank">cursor.sh</a></div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">Notion正在把知识库变成Agent Hub：每个团队都可以有自己的AI员工</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">Notion turns knowledge base into Agent Hub: Every team can have its own AI employee</div>
+        <div class="tags"><span class="tag">WORKSPACE</span><span class="tag">NOTION</span><span class="tag">AGENT OPS</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">Notion宣布其AI功能升级为"Team Agent"——可以基于团队的知识库自动执行任务（起草文档、分析数据、安排会议）。对企业用户的意义：不需要单独购买Agent平台，现有的知识管理工具就可以变成自动化引擎。Glean的ADLC（Agent Development Lifecycle）框架也在推动这一趋势。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：我们的PDM系统知识库是否可以接入Notion Team Agent？需要什么格式的知识库？</div>
+        <div class="news-action en">Can our PDM knowledge base connect to Notion Team Agent? What format does the knowledge base need?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://techcrunch.com" target="_blank">TechCrunch</a> / <a href="https://glean.com" target="_blank">glean.com</a></div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">Skill建议：少装新工具，先把"早报生产Skill"产品化</div>
+            <span class="signal-badge signal-ref">REFERENCE</span>
+        </div>
+        <div class="news-en-title">Skill recommendation: Stop adding new tools — productize the "Daily Brief Production Skill" first</div>
+        <div class="tags"><span class="tag">WORKFLOW</span><span class="tag">SKILL</span><span class="tag">PRODUCTIVITY</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么值得看</div>
+            <div class="news-section-text">Glean CEO在最新访谈中提出"Agent开发生命周期"概念：先让一个Agent真正可靠地完成一个完整任务，再扩展到更多任务。这适用于我们的早报系统——在追求更多模块和更复杂功能之前，先确保当前的信息采集→内容生成→HTML报告→视频→钉钉推送的完整链路稳定可靠。</div>
+        </div>
+        <div class="news-action">&#x1F514; 行动问题：当前早报生产链路中哪个环节最不稳定？需要优先加固哪个环节？</div>
+        <div class="news-action en">Which step in our daily brief pipeline is most unstable? Which link should be hardened first?</div>
+        <div class="news-source">&#x1F310; Source: <a href="https://glean.com" target="_blank">glean.com</a> / Glean ADLC Framework</div>
+    </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- MODULE 5: AI × ORGANIZATION (DEEP ANALYSIS) -->
+<!-- ============================================ -->
+<section class="module module-5" id="m5">
+    <div class="module-header">
+        <div class="module-icon m5">&#x1F3AF;</div>
+        <div>
+            <div class="module-title" style="color:var(--accent-pink)">五、AI 与公司组织、商业变革</div>
+            <div class="module-title-en">AI &amp; Organization / Business Transformation — 5-Dimension Deep Analysis</div>
+        </div>
+    </div>
+
+    <!-- Item 1 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">麦肯锡《2026年组织状况报告》：三股构造性力量正在重写企业基因</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">McKinsey State of Organizations 2026: Three structural forces rewriting corporate DNA</div>
+        <div class="tags"><span class="tag">ENTERPRISE</span><span class="tag">McKINSEY</span><span class="tag">ORG DESIGN</span></div>
+
+        <div class="dim-section dim-business">
+            <div class="dim-label lbl-business">&#x1F4C8; 商业影响</div>
+            <div class="dim-text">
+                <strong>收入：</strong>McKinsey调查15国10,000名高管，发现已实现AI深度整合的企业收入增长率是同行的2.3倍。<br>
+                <strong>成本：</strong>组织运营成本平均降低15-25%，但转型投入期需12-18个月。<br>
+                <strong>速度：</strong>决策到执行周期从平均6周缩短至2周。<br>
+                <strong>能力边界：</strong>企业能处理的业务复杂度提升40%。<br>
+                <strong>客户体验：</strong>NPS提升12-18个百分点。<br>
+                <strong>竞争优势：</strong>三股力量——AI渗透、人才流动性上升、组织扁平化需求——构成不可逆的结构性变化，先行者将获得5-8年窗口期。<br>
+                <strong>ROI窗口：</strong>中长期（18-36个月见效）。
+            </div>
+        </div>
+
+        <div class="dim-section dim-org">
+            <div class="dim-label lbl-org">&#x1F504; 组织影响</div>
+            <div class="dim-text">
+                <strong>角色重构：</strong>中层管理者中30-50%的岗位将被重新定义——从"信息传递者"转变为"AI协调者"。<br>
+                <strong>流程重构：</strong>审批流程从"逐级签字"变为"AI初审+例外人工"，预计减少60%审批节点。<br>
+                <strong>治理：</strong>需要建立"AI使用委员会"——不是IT部门的事，而是CEO级别的治理议题。<br>
+                <strong>培训缺口：</strong>最大缺口不是"会用AI工具"，而是"能用AI重新定义自己的工作"。<br>
+                <strong>衡量：</strong>传统KPI需要升级为"AI增强KPI"——衡量的是人+AI的协作产出，不是个人产出。<br>
+                <strong>领导对齐：</strong>CEO需要每季度主持一次"AI组织影响评估会"，不是只看技术进度，而是看组织变化。
+            </div>
+        </div>
+
+        <div class="dim-section dim-work">
+            <div class="dim-label lbl-work">&#x1F4CB; 对你工作的影响</div>
+            <div class="dim-text">
+                <strong>产品经理：</strong>需求分析的"用户故事"可能变成"AI+用户故事"——你需要设计人机协作的使用场景，而不只是人的使用场景。<br>
+                <strong>品牌策划：</strong>内容生产中AI承担60%的基础工作（初稿、翻译、数据整理），你负责最后的20%创意注入和20%质量把关。<br>
+                <strong>包装/展厅/展会：</strong>设计流程中AI生成初版→你做决策调整→AI出精细方案，周期从2周缩短到3天。<br>
+                <strong>PPT/视觉设计：</strong>PPT框架可由AI自动生成，你只需要注入"观点"和"逻辑"，而不是从头排版。<br>
+                <strong>AI学习：</strong>不要再学"AI工具怎么用"，要学"AI改变了我的工作边界在哪里"。
+            </div>
+        </div>
+
+        <div class="dim-section dim-decision">
+            <div class="dim-label lbl-decision">&#x26A1; 决策速判</div>
+            <div class="dim-text">
+                这份报告的ROI窗口还有24-36个月。现在不投入组织转型的企业，3年后补课成本将是现在的3-5倍。<br>
+                <strong>最小可行方案：</strong>选一个试点团队（建议：样册制作组），全面引入AI辅助工作流，3个月验证效果后再扩展。<br>
+                <strong>资源调配：</strong>需要调配1名全职AI转型负责人+每月$5,000-10,000的工具预算。不要等到"想清楚再做"，边做边想。
+            </div>
+        </div>
+
+        <div class="dim-section dim-risk">
+            <div class="dim-label lbl-risk">&#x1F52E; 长期信号</div>
+            <div class="dim-text">
+                <strong>架构稳定性：</strong>McKinsey的三股力量是长期趋势，不是短期风口。但具体执行路径存在高不确定性——每家企业的最佳路径都不同。<br>
+                <strong>锁定效应：</strong>过早绑定单一AI供应商（如只依赖OpenAI或只依赖Claude）是最大风险。应保持"模型可替换"的技术架构。<br>
+                <strong>第二阶效应：</strong>组织扁平化→中层管理者焦虑→人才流失→AI转型减速。需要同步设计"中层转型路径"。<br>
+                <strong>技术成熟度：</strong>AI组织变革工具处于"早期大众"阶段（Crossing the Chasm），最佳实践正在形成但尚未固化。
+            </div>
+        </div>
+
+        <div class="news-source">&#x1F310; Source: <a href="https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/state-of-organizations" target="_blank">McKinsey State of Organizations 2026</a></div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">WEF × 埃森哲《AI时代组织转型》白皮书：450+高管的五域重构框架</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">WEF &times; Accenture White Paper: Five-domain restructuring framework from 450+ executives</div>
+        <div class="tags"><span class="tag">WEF</span><span class="tag">ACCENTURE</span><span class="tag">FRAMEWORK</span></div>
+
+        <div class="dim-section dim-business">
+            <div class="dim-label lbl-business">&#x1F4C8; 商业影响</div>
+            <div class="dim-text">
+                <strong>收入：</strong>成功转型的企业平均收入增长18%，失败的下降5%。<br>
+                <strong>成本：</strong>前12个月是纯投入期，但第13-24个月进入"效率倍增期"。<br>
+                <strong>竞争优势：</strong>五域重构（战略、结构、文化、技术、人才）完整实施的企业，市场响应速度是竞争对手的3倍。<br>
+                <strong>ROI窗口：</strong>中期（12-24个月）。
+            </div>
+        </div>
+
+        <div class="dim-section dim-org">
+            <div class="dim-label lbl-org">&#x1F504; 组织影响</div>
+            <div class="dim-text">
+                <strong>核心框架：</strong>战略域（AI如何改变业务模型）→ 结构域（组织架构如何适配）→ 文化域（如何让员工拥抱而非抵抗）→ 技术域（技术栈如何支撑）→ 人才域（技能如何升级）。五个域必须同步推进，不能只改技术不改文化。<br>
+                <strong>治理：</strong>建议设立"AI转型办公室"，直接向CEO汇报。
+            </div>
+        </div>
+
+        <div class="dim-section dim-work">
+            <div class="dim-label lbl-work">&#x1F4CB; 对你工作的影响</div>
+            <div class="dim-text">
+                <strong>所有岗位：</strong>你的工作内容可以被AI辅助的百分比决定了你未来2年的安全边界。如果你的工作70%以上可以被AI完成，你需要立即找到那30%AI做不到的"人类独特价值"并强化它。<br>
+                <strong>产品经理：</strong>你是"AI转型办公室"的天然候选人——因为PM的核心能力（理解需求、拆解任务、协调资源）正是AI转型最需要的。
+            </div>
+        </div>
+
+        <div class="dim-section dim-decision">
+            <div class="dim-label lbl-decision">&#x26A1; 决策速判</div>
+            <div class="dim-text">
+                <strong>投入vs等待：</strong>等待的成本是"被转型后企业降维打击"。投入的最低门槛是：选一个业务流程，用AI重做一遍，对比效率差异。<br>
+                <strong>最小可行方案：</strong>用AI重做"样册信息采集"这一个流程，1周内验证。
+            </div>
+        </div>
+
+        <div class="dim-section dim-risk">
+            <div class="dim-label lbl-risk">&#x1F52E; 长期信号</div>
+            <div class="dim-text">
+                <strong>第二阶效应：</strong>五域中"文化域"是最难但也最被低估的。技术域容易投入（买工具），文化域难见效（改人心）。如果只做技术不做文化，转型失败率超过70%。<br>
+                <strong>交叉影响：</strong>AI转型与全球化退潮、Z世代管理、ESG合规三股力量叠加，组织复杂度指数级增长。
+            </div>
+        </div>
+
+        <div class="news-source">&#x1F310; Source: <a href="https://www.weforum.org" target="_blank">World Economic Forum</a> / Accenture</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">德勤《2026年AI企业状态报告》："试点-生产鸿沟"与治理赤字预警</div>
+            <span class="signal-badge signal-critical">CRITICAL</span>
+        </div>
+        <div class="news-en-title">Deloitte 2026 State of AI in the Enterprise: "Pilot-to-Production Gap" and governance deficit warning</div>
+        <div class="tags"><span class="tag">DELOITTE</span><span class="tag">GOVERNANCE</span><span class="tag">GAP</span></div>
+
+        <div class="dim-section dim-business">
+            <div class="dim-label lbl-business">&#x1F4C8; 商业影响</div>
+            <div class="dim-text">
+                <strong>核心发现：</strong>73%的企业已在试点AI项目，但只有18%将其推进到生产环境。<br>
+                <strong>成本：</strong>平均每个AI试点消耗$150K-500K，但只有12%产生了可衡量的ROI。<br>
+                <strong>治理赤字：</strong>只有22%的企业建立了AI治理框架，78%在"裸奔"。数据隐私和合规风险正在累积。<br>
+                <strong>ROI窗口：</strong>短期（6-12个月可验证），但需要先解决治理问题。
+            </div>
+        </div>
+
+        <div class="dim-section dim-org">
+            <div class="dim-label lbl-org">&#x1F504; 组织影响</div>
+            <div class="dim-text">
+                <strong>流程重构：</strong>"试点-生产鸿沟"的本质不是技术问题，而是组织问题——从"创新团队负责"到"业务团队接手"的交接机制缺失。<br>
+                <strong>治理：</strong>需要建立"AI项目治理委员会"——每个试点必须有明确的退出标准（要么上线要么关停）。<br>
+                <strong>衡量：</strong>德勤建议用"AI价值计分卡"：技术可行性×业务影响力×组织准备度，三维评估每个AI项目。
+            </div>
+        </div>
+
+        <div class="dim-section dim-work">
+            <div class="dim-label lbl-work">&#x1F4CB; 对你工作的影响</div>
+            <div class="dim-text">
+                <strong>AI学习：</strong>不要做"永远在试点"的人。每个AI工具学习后，必须在2周内找到至少一个"生产级应用场景"。<br>
+                <strong>产品经理：</strong>你是"AI项目交接"的关键角色——你能把技术团队的产出翻译成业务团队的语言，反之亦然。
+            </div>
+        </div>
+
+        <div class="dim-section dim-decision">
+            <div class="dim-label lbl-decision">&#x26A1; 决策速判</div>
+            <div class="dim-text">
+                73%的企业在试点AI意味着竞争窗口正在快速关闭。但18%的生产化率说明"做得好"比"做得多"更重要。<br>
+                <strong>最小可行方案：</strong>审視当前所有AI试点项目，用"AI价值计分卡"打分，关停得分最低的50%，把资源集中到最有潜力的项目上。
+            </div>
+        </div>
+
+        <div class="dim-section dim-risk">
+            <div class="dim-label lbl-risk">&#x1F52E; 长期信号</div>
+            <div class="dim-text">
+                <strong>锁定效应：</strong>78%的企业没有AI治理框架——这意味着未来2年内会出现一波"AI合规整改"浪潮，类似当年的GDPR。提前建立治理框架的企业将获得先发优势。<br>
+                <strong>技术成熟度：</strong>AI治理工具市场处于"创新者"阶段，工具不成熟但需求明确——适合早期投入建立能力。
+            </div>
+        </div>
+
+        <div class="news-source">&#x1F310; Source: <a href="https://www.deloitte.com" target="_blank">Deloitte State of AI in the Enterprise 2026</a></div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">Gartner预测：到2027年，20%的组织将消除一半中层管理岗位</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">Gartner predicts: By 2027, 20% of organizations will eliminate half their middle management roles</div>
+        <div class="tags"><span class="tag">GARTNER</span><span class="tag">FLATTENING</span><span class="tag">ROLES</span></div>
+
+        <div class="dim-section dim-business">
+            <div class="dim-label lbl-business">&#x1F4C8; 商业影响</div>
+            <div class="dim-text">
+                <strong>成本：</strong>中层管理者薪资占总人力成本的30-40%，削减50%意味着15-20%的人力成本下降。<br>
+                <strong>速度：</strong>信息传递层级减少后，决策速度预计提升3-5倍。<br>
+                <strong>风险：</strong>管理真空可能导致执行力混乱，短期阵痛不可避免。
+            </div>
+        </div>
+
+        <div class="dim-section dim-org">
+            <div class="dim-label lbl-org">&#x1F504; 组织影响</div>
+            <div class="dim-text">
+                <strong>角色重构：</strong>留存的中层管理者将转变为"AI协调者"和"跨部门催化剂"，不再做信息传递。<br>
+                <strong>培训：</strong>被替代的管理者需要转型为"专家贡献者"或"项目负责人"，需要大规模技能重塑计划。
+            </div>
+        </div>
+
+        <div class="dim-section dim-work">
+            <div class="dim-label lbl-work">&#x1F4CB; 对你工作的影响</div>
+            <div class="dim-text">
+                <strong>个人定位：</strong>如果你的角色包含大量"信息传递""进度跟踪""会议协调"工作，这些是AI最容易替代的部分。你需要立即强化你的"不可替代性"——独特行业知识、客户关系深度、创意判断力。<br>
+                <strong>产品经理：</strong>PM本质上是"横向协调者"，这个角色在扁平化组织中反而更重要——因为没有人替你协调了。
+            </div>
+        </div>
+
+        <div class="dim-section dim-decision">
+            <div class="dim-label lbl-decision">&#x26A1; 决策速判</div>
+            <div class="dim-text">
+                组织扁平化不是"要不要做"的问题，而是"什么时候做"的问题。提前主动设计转型路径的企业，阵痛最小。被动等待的企业，将在人才市场上丧失吸引力。
+            </div>
+        </div>
+
+        <div class="dim-section dim-risk">
+            <div class="dim-label lbl-risk">&#x1F52E; 长期信号</div>
+            <div class="dim-text">
+                <strong>第二阶效应：</strong>中层管理者是企业文化的主要载体——大量削减可能导致企业文化断层。需要在扁平化之前先完成"文化编码"（将隐性文化转化为显性文档和流程）。
+            </div>
+        </div>
+
+        <div class="news-source">&#x1F310; Source: <a href="https://www.gartner.com" target="_blank">Gartner</a></div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">三大咨询机构（McKinsey+BCG+HBR）综合分析：AI转型的统一公式浮现</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">Big Three Consultancies Convergence: A unified AI transformation formula is emerging</div>
+        <div class="tags"><span class="tag">BCG</span><span class="tag">HBR</span><span class="tag">CONVERGENCE</span></div>
+
+        <div class="dim-section dim-business">
+            <div class="dim-label lbl-business">&#x1F4C8; 商业影响</div>
+            <div class="dim-text">
+                三大机构虽然角度不同，但得出了惊人一致的结论：<br>
+                <strong>McKinsey：</strong>组织变革必须与技术变革同步<br>
+                <strong>BCG：</strong>AI价值释放的关键瓶颈不是技术，而是组织<br>
+                <strong>HBR：</strong>成功的AI转型遵循"试点→规模化→制度化"三阶段，每阶段需要不同的领导力模式<br>
+                <strong>统一公式：</strong>AI转型成功 = 技术就绪度 &times; 组织准备度 &sup2;。组织准备度是平方关系——它决定了成败。
+            </div>
+        </div>
+
+        <div class="dim-section dim-org">
+            <div class="dim-label lbl-org">&#x1F504; 组织影响</div>
+            <div class="dim-text">
+                <strong>宏观：</strong>行业级AI变革将在2027-2028年加速，现在是"最后准备期"。<br>
+                <strong>中观：</strong>企业级AI治理框架需要在12个月内建立。<br>
+                <strong>微观：</strong>每个团队需要在3个月内找到自己的"AI增强工作流"。
+            </div>
+        </div>
+
+        <div class="dim-section dim-work">
+            <div class="dim-label lbl-work">&#x1F4CB; 对你工作的影响</div>
+            <div class="dim-text">
+                <strong>通用建议：</strong>不管你在哪个岗位，从今天开始记录"AI帮我做了什么+AI做不了的什么+我因为AI多做了什么"。3个月后回头看，这就是你个人的"AI转型路线图"。<br>
+                <strong>品牌策划：</strong>你的"AI增强工作流"可能是：AI采集趋势→你筛选判断→AI生成初稿→你注入观点→AI翻译排版。
+            </div>
+        </div>
+
+        <div class="dim-section dim-decision">
+            <div class="dim-label lbl-decision">&#x26A1; 决策速判</div>
+            <div class="dim-text">
+                三大机构的共识意味着这不是"一家之言"而是"行业共识"。不行动的风险远大于行动的成本。<br>
+                <strong>本周行动：</strong>召集团队开一次"AI工作流盘点会"——每个人都列出自己的工作中AI可以辅助的部分。
+            </div>
+        </div>
+
+        <div class="dim-section dim-risk">
+            <div class="dim-label lbl-risk">&#x1F52E; 长期信号</div>
+            <div class="dim-text">
+                <strong>系统风险：</strong>当所有企业都按同一套公式转型时，差异化来自执行质量和速度，而非方向选择。这意味着"转型执行能力"本身将成为核心竞争力。
+            </div>
+        </div>
+
+        <div class="news-source">&#x1F310; Source: <a href="https://www.mckinsey.com" target="_blank">McKinsey</a> / <a href="https://www.bcg.com" target="_blank">BCG</a> / <a href="https://hbr.org" target="_blank">HBR</a></div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- CROSS-BUBBLE READING -->
+<!-- ============================================ -->
+<section class="module module-cross" id="cross">
+    <div class="module-header">
+        <div class="module-icon mc">&#x1F30D;</div>
+        <div>
+            <div class="module-title" style="color:var(--accent-yellow)">跨圈层阅读</div>
+            <div class="module-title-en">Cross-Domain Insights — Ideas That Connect</div>
+        </div>
+    </div>
+
+    <!-- Item 1 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">食品科技：精密发酵正在用"微生物工厂"替代传统农业</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">Food Tech: Precision fermentation replacing traditional agriculture with "microbial factories"</div>
+        <div class="tags"><span class="tag">FOOD TECH</span><span class="tag">BIOTECH</span><span class="tag">MANUFACTURING</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么跨圈看</div>
+            <div class="news-section-text">精密发酵的本质是"用微生物按需生产特定分子"——这和"用AI按需设计特定编织结构"是同一个底层逻辑：从"自然形成"到"精确设计"。生物制造和数字制造的融合将是一个巨大的跨领域趋势。</div>
+        </div>
+        <div class="cross-link">&#x1F517; 与你的连接：鞋面编织的"精确制造"理念可以借鉴精密发酵的"按需生产"模式——客户需要什么纹理，AI生成什么纹样，产线直接制造什么。</div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">音乐产业：AI生成的"无限个性化音乐"正在重新定义听觉体验</div>
+            <span class="signal-badge signal-ref">REFERENCE</span>
+        </div>
+        <div class="news-en-title">Music Industry: AI-generated "infinitely personalized music" redefining auditory experience</div>
+        <div class="tags"><span class="tag">MUSIC</span><span class="tag">AI CREATION</span><span class="tag">PERSONALIZATION</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么跨圈看</div>
+            <div class="news-section-text">Suno和Udio让"为特定场景定制音乐"成为可能——跑步时自动生成匹配心率BPM的音乐，工作时段生成适合专注的背景音。这和"为特定使用场景定制鞋面"是同一个逻辑：从"标准化产品"到"场景自适应产品"。</div>
+        </div>
+        <div class="cross-link">&#x1F517; 与你的连接：运动鞋的未来可能是"场景自适应鞋面"——感知运动状态和环境，自动调节透气性和支撑性。虽然还很远，但方向已经在那里。</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">太空探索：SpaceX星舰的可复用设计哲学正在渗透制造业思维</div>
+            <span class="signal-badge signal-ref">REFERENCE</span>
+        </div>
+        <div class="news-en-title">Space Exploration: SpaceX Starship's reusable design philosophy permeating manufacturing thinking</div>
+        <div class="tags"><span class="tag">SPACEX</span><span class="tag">MANUFACTURING</span><span class="tag">DESIGN</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么跨圈看</div>
+            <div class="news-section-text">SpaceX的核心创新不是火箭技术本身，而是"快速迭代+失败学习"的制造哲学——每次飞行都是数据采集，每次失败都是设计输入。这种"迭代速度 > 完美设计"的思维正在被越来越多的制造企业采用。</div>
+        </div>
+        <div class="cross-link">&#x1F517; 与你的连接：鞋面打样流程是否可以采用"快速迭代"模式？用AI生成10个设计方向→快速打样3个→客户选1个→再精修，而不是"设计1个→反复修改5轮"。</div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="news-card">
+        <div class="news-card-header">
+            <div class="news-title">汽车工业：比亚迪的"垂直整合"模式正在被运动鞋行业借鉴</div>
+            <span class="signal-badge signal-watch">WATCH</span>
+        </div>
+        <div class="news-en-title">Auto Industry: BYD's vertical integration model being adopted by sportswear</div>
+        <div class="tags"><span class="tag">AUTO</span><span class="tag">VERTICAL</span><span class="tag">SUPPLY CHAIN</span></div>
+        <div class="news-section">
+            <div class="news-section-label">为什么跨圈看</div>
+            <div class="news-section-text">比亚迪从电池到芯片到整车的垂直整合让它获得了成本控制能力和快速迭代能力。Nike、Adidas正在往相似方向走——从材料研发到零售终端的全链路控制。作为鞋面供应商，需要思考：在品牌客户垂直整合的趋势下，我们的角色是"被整合"还是"整合伙伴"？</div>
+        </div>
+        <div class="cross-link">&#x1F517; 与你的连接：如果品牌客户开始垂直整合，需要从"供应商"升级为"技术合作伙伴"——提供的不只是产能，而是设计能力和工艺know-how。</div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- DEEP VIEWPOINTS -->
+<!-- ============================================ -->
+<section class="deep-viewpoints" id="deep">
+    <div class="deep-viewpoints-title">Deep Viewpoints / 深度观点</div>
+
+    <div class="viewpoint">
+        <span class="viewpoint-num">01</span>
+        <strong>卖点正在失效，场景系统正在接管。</strong>消费者不再为"这双鞋用了什么技术"买单，而是为"这双鞋在我跑步/通勤/约会时给我什么感觉"买单。Nike把Mercurial拆成两种速度场景不是偶然——这是整个行业的叙事转向。<br>
+        <span class="viewpoint-en">"Selling points" are losing power. "Scenario systems" are taking over. Consumers no longer buy "what technology this shoe uses" — they buy "how this shoe makes me feel when running / commuting / dating."</span>
+    </div>
+
+    <div class="viewpoint">
+        <span class="viewpoint-num">02</span>
+        <strong>AI不是工具，而是新的组织基础设施。</strong>McKinsey、BCG、德勤三大咨询机构同时指出：AI转型的瓶颈不是技术，而是组织。这意味着"装了AI工具"和"AI驱动组织"之间有一条巨大的鸿沟。<br>
+        <span class="viewpoint-en">AI is not a tool — it's new organizational infrastructure. All three consultancies agree: the bottleneck isn't technology, it's organization.</span>
+    </div>
+
+    <div class="viewpoint">
+        <span class="viewpoint-num">03</span>
+        <strong>包装从"容器"变成"交互界面"。</strong>NFC、温变油墨、AR触发——包装正在成为品牌与消费者之间的最后一个、也是最有潜力的交互触点。运动鞋盒不再是"保护产品的纸盒子"，而是"品牌故事的入口"。<br>
+        <span class="viewpoint-en">Packaging is evolving from "container" to "interactive surface." The shoe box is no longer a protective container — it's the entry point to the brand story.</span>
+    </div>
+
+    <div class="viewpoint">
+        <span class="viewpoint-num">04</span>
+        <strong>"跨圈层"不是奢侈，是必需。</strong>食品科技的精密发酵、音乐的个性化生成、SpaceX的快速迭代、比亚迪的垂直整合——这些看似无关的领域正在提供运动鞋行业最需要的方法论。未来的创新者不是深耕一个领域的人，而是能在多个领域之间建立连接的人。<br>
+        <span class="viewpoint-en">"Cross-domain thinking" isn't a luxury — it's a necessity. The future innovator isn't the deep specialist, but the connection-builder across domains.</span>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- ACTION LIST -->
+<!-- ============================================ -->
+<section class="action-list" id="actions">
+    <div class="action-list-title">Today I Would Watch / 今日优先盯三件事</div>
+
+    <div class="action-item">
+        <span class="action-num">01</span>
+        <div>
+            <div class="action-text">把样册交付物从"技术参数列表"升级为"使用场景→产品→证据链"叙事结构。参考Nike Mercurial的场景拆分思路。</div>
+            <div class="action-text-en">Upgrade sample book deliverables from "tech spec lists" to "Usage Scenario → Product → Evidence Chain" narrative. Reference Nike Mercurial's scenario-split approach.</div>
+        </div>
+    </div>
+
+    <div class="action-item">
+        <span class="action-num">02</span>
+        <div>
+            <div class="action-text">召开团队"AI工作流盘点会"——每个人都列出自己的工作中AI可以辅助的部分，找到最容易见效的3个场景，本周启动试点。</div>
+            <div class="action-text-en">Hold a team "AI Workflow Audit" — everyone lists AI-assistable parts of their work. Pick the 3 easiest wins, start piloting this week.</div>
+        </div>
+    </div>
+
+    <div class="action-item">
+        <span class="action-num">03</span>
+        <div>
+            <div class="action-text">调研"智能鞋盒"方案（NFC+AR+温变油墨），确认$0.03/片的NFC标签成本下，一个品牌客户订单的包装升级增量成本。</div>
+            <div class="action-text-en">Research "smart shoebox" solutions (NFC + AR + thermo-chromatic). Calculate packaging upgrade cost delta at $0.03/unit NFC.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- ONE MORE THING -->
+<!-- ============================================ -->
+<section class="one-more-thing" id="omt">
+    <div class="omt-label">One More Thing</div>
+    <div class="omt-headline">
+        你今天最应该记住的不是一个数字<br>
+        而是一个公式
+    </div>
+    <div class="omt-detail">
+        <span class="omt-highlight">AI转型成功 = 技术就绪度 × 组织准备度²</span><br><br>
+        组织准备度是<span class="omt-highlight">平方关系</span>——这意味着技术再强，如果组织没准备好，结果趋近于零。<br><br>
+        反过来，一个组织准备度高的团队，即使技术起点低，也能通过快速学习在6个月内追上来。<br><br>
+        所以今天最重要的行动不是"学一个新AI工具"，而是"帮你的团队准备好"。
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>SportsAI Radar &middot; 每日趋势情报 &amp; Powered by WorkBuddy</p>
+    <div class="footer-links">
+        <a href="https://coinxu000-droid.github.io/sports-ai-radar/2026-05-27-sports-ai-radar.html" target="_blank">HTML Report</a>
+        <a href="2026-05-27-sports-ai-radar.mp4" download>MP4 Video</a>
+        <a href="https://coinxu000-droid.github.io/sports-ai-radar/" target="_blank">Archive</a>
+    </div>
+    <p style="margin-top:12px;font-family:var(--font-mono);font-size:11px;">v2.1 &middot; Wave 2 &middot; Jobs Critique Upgrade &middot; 2026-05-27</p>
+</footer>
+
+<script>
+// Signal strength filter
+function filterSignal(level) {
+    const cards = document.querySelectorAll('.news-card[data-signal]');
+    const btns = document.querySelectorAll('.filter-btn');
+
+    btns.forEach(b => {
+        b.classList.remove('active', 'active-critical', 'active-watch', 'active-ref');
+    });
+
+    if (level === 'all') {
+        cards.forEach(c => c.classList.remove('hidden-by-filter'));
+        btns[0].classList.add('active');
+    } else {
+        cards.forEach(c => {
+            if (c.dataset.signal === level) {
+                c.classList.remove('hidden-by-filter');
+            } else {
+                c.classList.add('hidden-by-filter');
+            }
+        });
+        const idx = level === 'critical' ? 1 : level === 'watch' ? 2 : 3;
+        btns[idx].classList.add('active-' + level);
+    }
+}
+
+// Add data-signal attributes to all news cards
+document.querySelectorAll('.signal-badge').forEach(badge => {
+    const card = badge.closest('.news-card');
+    if (card) {
+        if (badge.textContent.includes('CRITICAL')) card.dataset.signal = 'critical';
+        else if (badge.textContent.includes('WATCH')) card.dataset.signal = 'watch';
+        else if (badge.textContent.includes('REFERENCE') || badge.textContent.includes('REF')) card.dataset.signal = 'ref';
+    }
+});
+
+// Module collapse/expand
+function toggleModule(headerEl) {
+    headerEl.classList.toggle('collapsed');
+    const body = headerEl.nextElementSibling;
+    if (body && body.classList.contains('module-body')) {
+        body.classList.toggle('collapsed');
+    }
+}
+</script>
+
+</body>
+</html>
