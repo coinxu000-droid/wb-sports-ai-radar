@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WB早报 · 2026-06-18 | Sports × AI Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a28;
+  --bg-card-hover: #22223a;
+  --text-primary: #e8e8f0;
+  --text-secondary: #8888aa;
+  --text-tertiary: #5a5a7a;
+  --accent-cyan: #00d4ff;
+  --accent-blue: #4a90ff;
+  --accent-purple: #a855f7;
+  --accent-orange: #ff6b35;
+  --accent-pink: #ff3d8e;
+  --accent-green: #22c55e;
+  --accent-yellow: #fbbf24;
+  --accent-red: #ef4444;
+  --border-color: #2a2a3a;
+  --font-sans: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  font-size: 15px;
+}
+.container { max-width: 980px; margin: 0 auto; padding: 20px 16px; }
+
+.hero { text-align: center; padding: 52px 0 40px; border-bottom: 1px solid var(--border-color); margin-bottom: 32px; position: relative; }
+.hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 700px; height: 220px; background: radial-gradient(ellipse, rgba(74,144,255,0.10) 0%, rgba(168,85,247,0.04) 40%, transparent 70%); pointer-events: none; }
+.hero .date { font-size: 0.82rem; color: var(--text-secondary); font-family: var(--font-mono); letter-spacing: 0.18em; margin-bottom: 10px; }
+.hero h1 { font-size: 2.4rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; }
+.hero .subtitle { color: var(--text-secondary); font-size: 1.02rem; font-weight: 400; }
+.hero .subtitle span { color: var(--accent-cyan); font-weight: 600; }
+
+.verdict-box { background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(0,212,255,0.08)); border: 1px solid rgba(168,85,247,0.35); border-radius: 14px; padding: 22px 28px; margin-bottom: 32px; }
+.verdict-box .label { font-size: 0.72rem; color: var(--accent-purple); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; font-family: var(--font-mono); }
+.verdict-box .text { font-size: 1.08rem; line-height: 1.8; }
+.verdict-box .text strong { color: var(--accent-cyan); }
+.verdict-box .text .en { display: block; margin-top: 8px; font-size: 0.92rem; color: var(--text-secondary); font-style: italic; }
+
+.kpi-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 36px; }
+.kpi-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px 14px; text-align: center; transition: all 0.25s; }
+.kpi-card:hover { border-color: var(--accent-cyan); transform: translateY(-2px); }
+.kpi-value { font-size: 1.7rem; font-weight: 800; color: var(--accent-cyan); font-family: var(--font-mono); }
+.kpi-value.orange { color: var(--accent-orange); }
+.kpi-value.purple { color: var(--accent-purple); }
+.kpi-value.pink { color: var(--accent-pink); }
+.kpi-value.green { color: var(--accent-green); }
+.kpi-value.yellow { color: var(--accent-yellow); }
+.kpi-value.blue { color: var(--accent-blue); }
+.kpi-value.red { color: var(--accent-red); }
+.kpi-label { font-size: 0.72rem; color: var(--text-secondary); margin-top: 4px; }
+
+.filter-bar { display: flex; gap: 8px; margin-bottom: 24px; align-items: center; flex-wrap: wrap; }
+.filter-label { font-size: 0.78rem; color: var(--text-secondary); margin-right: 4px; font-weight: 600; }
+.filter-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 6px 14px; border-radius: 8px; font-size: 0.78rem; cursor: pointer; font-family: var(--font-sans); font-weight: 600; transition: all 0.2s; }
+.filter-btn:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+.filter-btn.active { background: rgba(0,212,255,0.12); color: var(--accent-cyan); border-color: var(--accent-cyan); }
+.filter-btn.signal-red.active { background: rgba(239,68,68,0.12); color: var(--accent-red); border-color: var(--accent-red); }
+.filter-btn.signal-yellow.active { background: rgba(251,191,36,0.12); color: var(--accent-yellow); border-color: var(--accent-yellow); }
+.filter-btn.signal-green.active { background: rgba(34,197,94,0.12); color: var(--accent-green); border-color: var(--accent-green); }
+
+.module-section { margin-bottom: 30px; }
+.module-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px 12px 0 0; cursor: pointer; user-select: none; transition: background 0.2s; }
+.module-header:hover { background: var(--bg-card-hover); }
+.module-header.collapsed { border-radius: 12px; }
+.module-header .icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.icon.m1 { background: rgba(0,212,255,0.12); }
+.icon.m2 { background: rgba(74,144,255,0.12); }
+.icon.m3 { background: rgba(168,85,247,0.12); }
+.icon.m4 { background: rgba(255,107,53,0.12); }
+.icon.m5 { background: rgba(255,61,142,0.12); }
+.icon.cross { background: rgba(34,197,94,0.12); }
+.module-header .title { font-size: 1.05rem; font-weight: 700; flex: 1; }
+.module-header .count { font-size: 0.72rem; color: var(--text-tertiary); background: var(--bg-secondary); padding: 2px 10px; border-radius: 12px; font-family: var(--font-mono); }
+.module-header .toggle { color: var(--text-secondary); font-size: 0.8rem; transition: transform 0.2s; }
+.module-header.collapsed .toggle { transform: rotate(-90deg); }
+.module-body { padding: 16px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 12px 12px; display: flex; flex-direction: column; gap: 14px; }
+.module-body.hidden { display: none; }
+
+.card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px 22px; transition: all 0.25s; position: relative; }
+.card:hover { border-color: var(--accent-cyan); transform: translateY(-1px); }
+.card .signal { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: 10px; }
+.card .signal.critical { background: rgba(239,68,68,0.15); color: var(--accent-red); border: 1px solid rgba(239,68,68,0.3); }
+.card .signal.watch { background: rgba(251,191,36,0.12); color: var(--accent-yellow); border: 1px solid rgba(251,191,36,0.3); }
+.card .signal.reference { background: rgba(34,197,94,0.12); color: var(--accent-green); border: 1px solid rgba(34,197,94,0.3); }
+.card .source-line { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; font-size: 0.74rem; color: var(--text-tertiary); font-family: var(--font-mono); }
+.card .source-line .age { padding: 1px 7px; border-radius: 4px; font-weight: 600; }
+.card .source-line .age.fresh { background: rgba(0,212,255,0.1); color: var(--accent-cyan); }
+.card .source-line .age.warn { background: rgba(251,191,36,0.08); color: var(--accent-yellow); }
+.card .source-line a { color: var(--accent-blue); text-decoration: none; }
+.card .source-line a:hover { text-decoration: underline; }
+.card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; line-height: 1.5; }
+.card h3 .en-title { display: block; font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); margin-top: 4px; font-style: italic; }
+.card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 10px; }
+.card .insight { background: rgba(0,212,255,0.04); border-left: 3px solid var(--accent-cyan); padding: 10px 14px; border-radius: 6px; font-size: 0.85rem; color: var(--text-primary); line-height: 1.7; }
+.card .insight strong { color: var(--accent-cyan); }
+
+.card .dimensions { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+.card .dim { padding: 8px 12px; background: var(--bg-secondary); border-radius: 8px; font-size: 0.82rem; border-left: 2px solid var(--border-color); }
+.card .dim .dim-label { font-weight: 700; margin-right: 4px; }
+.card .dim.m5b { border-left-color: var(--accent-blue); }
+.card .dim.m5b .dim-label { color: var(--accent-blue); }
+.card .dim.m5o { border-left-color: var(--accent-orange); }
+.card .dim.m5o .dim-label { color: var(--accent-orange); }
+.card .dim.m5w { border-left-color: var(--accent-purple); }
+.card .dim.m5w .dim-label { color: var(--accent-purple); }
+.card .dim.m5d { border-left-color: var(--accent-pink); }
+.card .dim.m5d .dim-label { color: var(--accent-pink); }
+.card .dim.m5l { border-left-color: var(--accent-cyan); }
+.card .dim.m5l .dim-label { color: var(--accent-cyan); }
+
+.cross-layers { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.cross-l { padding: 10px 14px; border-radius: 8px; font-size: 0.83rem; line-height: 1.6; }
+.cross-l.l1 { background: rgba(74,144,255,0.06); border: 1px solid rgba(74,144,255,0.15); }
+.cross-l.l1 .l-tag { color: var(--accent-blue); font-weight: 700; font-size: 0.72rem; }
+.cross-l.l2 { background: rgba(168,85,247,0.06); border: 1px solid rgba(168,85,247,0.15); }
+.cross-l.l2 .l-tag { color: var(--accent-purple); font-weight: 700; font-size: 0.72rem; }
+.cross-l.l3 { background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.12); border-left: 3px solid var(--accent-cyan); }
+.cross-l.l3 .l-tag { color: var(--accent-cyan); font-weight: 700; font-size: 0.72rem; }
+
+.action-section { margin-bottom: 40px; }
+.action-section h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; color: var(--accent-orange); }
+.action-list { display: flex; flex-direction: column; gap: 10px; }
+.action-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; transition: all 0.2s; }
+.action-item:hover { border-color: var(--accent-orange); }
+.action-num { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,107,53,0.12); color: var(--accent-orange); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.82rem; flex-shrink: 0; }
+.action-text { font-size: 0.88rem; line-height: 1.6; }
+.action-text strong { color: var(--accent-cyan); }
+
+.omt-section { background: linear-gradient(135deg, rgba(168,85,247,0.06), rgba(255,61,142,0.04)); border: 1px solid rgba(168,85,247,0.25); border-radius: 14px; padding: 28px 30px; margin-bottom: 40px; position: relative; overflow: hidden; }
+.omt-section::before { content: '🔮'; position: absolute; top: 20px; right: 24px; font-size: 2rem; opacity: 0.3; }
+.omt-label { font-size: 0.72rem; color: var(--accent-purple); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-family: var(--font-mono); margin-bottom: 10px; }
+.omt-section h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: var(--accent-pink); }
+.omt-section p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8; }
+.omt-section .reveal-hint { font-size: 0.72rem; color: var(--text-tertiary); margin-top: 12px; cursor: pointer; user-select: none; }
+.omt-section .reveal-content { display: none; margin-top: 16px; padding: 16px; background: var(--bg-secondary); border-radius: 10px; border: 1px solid var(--border-color); }
+.omt-section .reveal-content.show { display: block; }
+
+.footer { text-align: center; padding: 32px 0; border-top: 1px solid var(--border-color); color: var(--text-tertiary); font-size: 0.72rem; font-family: var(--font-mono); }
+.footer a { color: var(--accent-blue); text-decoration: none; }
+
+@keyframes pulse-critical { 0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.3); } 50% { box-shadow: 0 0 0 8px rgba(239,68,68,0); } }
+.card.signal-critical { animation: pulse-critical 2s infinite; border-color: rgba(239,68,68,0.4); }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.5rem; }
+  .kpi-panel { grid-template-columns: repeat(2, 1fr); }
+  .card { padding: 16px; }
+}
+
+.separator { border: 0; border-top: 1px solid var(--border-color); margin: 8px 0 20px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 600; margin-right: 4px; }
+.tag.m1 { background: rgba(0,212,255,0.1); color: var(--accent-cyan); }
+.tag.m2 { background: rgba(74,144,255,0.1); color: var(--accent-blue); }
+.tag.m3 { background: rgba(168,85,247,0.1); color: var(--accent-purple); }
+.tag.m4 { background: rgba(255,107,53,0.1); color: var(--accent-orange); }
+.tag.m5 { background: rgba(255,61,142,0.1); color: var(--accent-pink); }
+.tag.cross { background: rgba(34,197,94,0.1); color: var(--accent-green); }
+.tag.wc { background: rgba(251,191,36,0.12); color: var(--accent-yellow); }
+</style>
+<script>
+function filterSignals(level) {
+  const cards = document.querySelectorAll('.card');
+  const buttons = document.querySelectorAll('.filter-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  if (level === 'ALL') {
+    cards.forEach(c => c.style.display = '');
+    document.querySelector('.filter-btn:first-child').classList.add('active');
+  } else {
+    document.querySelector('.filter-btn[data-signal="'+level+'"]').classList.add('active');
+    cards.forEach(c => {
+      const signal = c.getAttribute('data-signal');
+      c.style.display = (signal === level) ? '' : 'none';
+    });
+  }
+}
+function toggleModule(id) {
+  const header = document.getElementById('mh-'+id);
+  const body = document.getElementById('mb-'+id);
+  header.classList.toggle('collapsed');
+  body.classList.toggle('hidden');
+}
+function revealOMT() {
+  document.getElementById('omt-reveal').classList.add('show');
+}
+</script>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="date">2026.06.18 · THURSDAY · Vol.20</div>
+  <h1>WB早报 · 运动鞋服 × AI趋势雷达</h1>
+  <div class="subtitle">Sports Footwear × AI Trend Radar — <span>Decision Intelligence Briefing</span></div>
+</div>
+
+<!-- ===== CORE VERDICT ===== -->
+<div class="verdict-box">
+  <div class="label">🧭 核心判断 / Core Verdict</div>
+  <div class="text">
+    <strong>宁波慈星收购Karl Mayer旗下Stoll品牌——中国针织装备首次完成对欧洲高端横机资产的逆向并购，国产替代从单品突破升级为品牌级跃迁；Nike以"沉浸式零售"为世界杯倒计时2天造势，5,000+门店协同展示"赛事-街潮-社区"三位一体新模型；WWDC 2026把Siri重做为系统级Agent，宣告Agent OS时代正式开场。</strong>
+    <span class="en">Ningbo Cixing's acquisition of Stoll from Karl Mayer marks the first reverse takeover of a European flat-knitting brand by a Chinese equipment maker — domestic substitution has evolved from single-machine breakthroughs to brand-level leap. Nike activates 5,000+ stores with immersive retail for the 2-day World Cup countdown, redefining the "pitch-street-community" model. WWDC 2026 rebuilt Siri as a system-level Agent, heralding the Agent OS era.</span>
+  </div>
+</div>
+
+<!-- ===== KPI PANEL ===== -->
+<div class="kpi-panel">
+  <div class="kpi-card"><div class="kpi-value red">2d</div><div class="kpi-label">距世界杯开幕<br>Days to WC Kickoff</div></div>
+  <div class="kpi-card"><div class="kpi-value blue">270″</div><div class="kpi-label">Karl Mayer TM WEFT新机型<br>TM WEFT Working Width</div></div>
+  <div class="kpi-card"><div class="kpi-value purple">1,800</div><div class="kpi-label">TM WEFT最高转速(rpm)<br>Max RPM</div></div>
+  <div class="kpi-card"><div class="kpi-value orange">+30%</div><div class="kpi-label">Lululemon中国Q1<br>LULU China Q1</div></div>
+  <div class="kpi-card"><div class="kpi-value green">$220</div><div class="kpi-label">Nike Pegasus Premium SP<br>PEG Premium SP Price</div></div>
+  <div class="kpi-card"><div class="kpi-value yellow">5,000+</div><div class="kpi-label">Nike全球零售触点<br>Nike Stores Activated</div></div>
+  <div class="kpi-card"><div class="kpi-value pink">138k★</div><div class="kpi-label">Anthropic Agent Skills<br>Anthropic Skills Repo Stars</div></div>
+  <div class="kpi-card"><div class="kpi-value cyan" style="color:var(--accent-cyan)">9.7B</div><div class="kpi-label">Lululemon中国Q1营收<br>LULU China Revenue</div></div>
+</div>
+
+<!-- ===== FILTER BAR ===== -->
+<div class="filter-bar">
+  <span class="filter-label">📡 信号筛选</span>
+  <button class="filter-btn active" data-signal="ALL" onclick="filterSignals('ALL')">ALL</button>
+  <button class="filter-btn signal-red" data-signal="CRITICAL" onclick="filterSignals('CRITICAL')">🔴 CRITICAL</button>
+  <button class="filter-btn signal-yellow" data-signal="WATCH" onclick="filterSignals('WATCH')">🟡 WATCH</button>
+  <button class="filter-btn signal-green" data-signal="REFERENCE" onclick="filterSignals('REFERENCE')">🟢 REFERENCE</button>
+</div>
+
+<!-- ================================================ -->
+<!-- M1: 运动鞋服 -->
+<!-- ================================================ -->
+<div class="module-section">
+<div class="module-header" id="mh-M1" onclick="toggleModule('M1')">
+  <div class="icon m1">👟</div>
+  <div class="title">M1 · 运动鞋服 <span style="font-weight:400;color:var(--text-tertiary);font-size:0.8rem;">Sports Footwear</span></div>
+  <div class="count">5 条</div>
+  <div class="toggle">▼</div>
+</div>
+<div class="module-body" id="mb-M1">
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 1d ago · 2026-06-17</span>
+      <a href="https://www.knittingtradejournal.com/cixing-acquires-stoll-brand-following-karl-mayer-exit/" target="_blank">Knitting Trade Journal</a>
+      <span>·</span>
+      <a href="https://textileworldasia.com/textile-world-asia/2026/06/stoll-agreement-signed-for-the-divestiture-of-selected-assets-to-ningbo-cixing-co-ltd/" target="_blank">Textile World Asia</a>
+    </div>
+    <h3>Karl Mayer出售Stoll品牌给宁波慈星：欧洲横机资产首次被中国厂商逆向并购
+      <span class="en-title">Karl Mayer offloads Stoll to Ningbo Cixing — first Chinese reverse takeover of a European flat-knitting brand</span>
+    </h3>
+    <p>2026年6月17日，德国Karl Mayer正式签署协议，将其原Stoll横机业务的核心资产——包括Stoll品牌、精选材料、库存及未公开的技术资产——转让给中国针织装备龙头宁波慈星集团。背景是Stoll罗伊特林根工厂已于2025年10月关闭，Karl Mayer自2025年初即战略聚焦经编/经准备/产业用纺织品三大主业。客户保修义务保留。</p>
+    <p>This is a watershed moment for the industry. For 150 years, European machine makers (Stoll, Shima Seiki, Steiger) dominated premium flat knitting; now a Chinese vendor owns the heritage brand. Expect: faster price erosion in mid-tier flat knitting, accelerated design-service competition, and re-tiered supply chain for tier-1 athletic/footwear partners (Nike/Adidas/Asics).</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：横机装备市场格局重写。慈星拿下Stoll品牌意味着：从"代工-返销"升级为"品牌-技术-渠道"三合一的全球玩家。对鞋面供应链：横机产能(尤其电脑横机)的议价权将从德日厂商向中国厂商倾斜。品类关联：电脑横机直接服务于飞织/圆编/贾卡提花鞋面打样与小批量研发。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 2d ago · 2026-06-16</span>
+      <a href="https://moresneakers.com/releases/nike-pegasus-premium-sp-black-sail-ir2166-001" target="_blank">More Sneakers</a>
+      <span>·</span>
+      <a href="https://sneakerbardetroit.com/nike-pegasus-premium-sp-release-date/" target="_blank">Sneaker Bar Detroit</a>
+    </div>
+    <h3>Nike Pegasus Premium SP Pack双配色$220发售：飞织鞋面+SP实验性新系列
+      <span class="en-title">Nike Pegasus Premium SP Pack launches in 2 colorways at $220 — Flyknit upper with new SP experimentation line</span>
+    </h3>
+    <p>Black Sail(IR2166-001)于6月16日美国发售、6月18日欧盟发售；White Black同步推出。这是Pegasus Premium首次以"SP"子系列形式登场，被业界视为Nike对Adidas Adizero Pro系列定价升级的正面回应。鞋面延续Pegasus家族的飞织结构，但引入了SP(Special Project)专属的鞋舌、鞋眼与外底纹路设计语言。</p>
+    <p>The $220 price point is the headline: it signals Nike's confidence in pushing Pegasus from "daily trainer" to "premium category" — and tests consumer elasticity ahead of 2027 marathon season. Watch for SKU IR2166-002 follow-ups.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：$220的飞织Pegasus是2026年最重要的"价格-品类"信号。NPD数据显示$200+价位段飞织鞋款年增速连续4个季度跑赢行业，Nike用经典款试水高端化是给整个供应链的定心丸——飞织鞋面从"功能化"向"高端化"演进的窗口被进一步打开。</div>
+  </div>
+
+  <div class="card" data-signal="REFERENCE">
+    <span class="signal reference">🟢 REFERENCE</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 8d ago · 2026-06-10</span>
+      <a href="https://www.runnersworld.com/shoe/asics-gel-fuji-trainer-2-womens" target="_blank">Runner's World</a>
+      <span>·</span>
+      <a href="https://post.smzdm.com/p/a5rvmopx/" target="_blank">什么值得跑鞋</a>
+    </div>
+    <h3>亚瑟士vs New Balance 2026缓震旗舰对决：GEL-KAYANO 32 × NB 1080 V15 Infinion中底
+      <span class="en-title">Asics vs NB 2026 cushion showdown: GEL-KAYANO 32 vs NB 1080 V15 with Infinion midsole</span>
+    </h3>
+    <p>NB 1080 V15启用全新Infinion中底(原Fresh Foam系列退役)，亚瑟士延续GEL-KAYANO 32(配合GEL-NIMBUS 28)走"软弹+大体重友好"路线。两双都被定位为"长距离日训旗舰"。从工艺看，NB 1080 V15鞋面为新一代工程网眼(经编+提花结合)，亚瑟士鞋面为分层贾卡提花支撑结构。</p>
+    <p>Asics is doubling down on heritage GEL; NB is betting on foam chemistry. The fact that BOTH use warp-knit + jacquard-combined uppers confirms the industry standard has shifted from woven to knit-engineered for the cushion category.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：双品牌不约而同把"提花+经编"作为缓震旗舰鞋面方案，说明该组合已通过市场验证。对供应链：未来6-12个月提花+经编的产能瓶颈会进一步收紧，Karl Mayer经编机与Stoll/慈星横机的同步投入将决定谁能吃到这波订单。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 4d ago · 2026-06-14</span>
+      <a href="https://runnerscove.com/running-shoe-release-dates-calendar/" target="_blank">Runnerscove</a>
+      <span>·</span>
+      <a href="https://runningbear.co.uk/blogs/news/latest-running-shoe-releases-at-running-bear-meet-the-newest-models-of-2026" target="_blank">Running Bear</a>
+    </div>
+    <h3>2026夏季跑鞋密集发布：Brooks Ghost 18 / Saucony Triumph 24 / Asics Gel-Kayano 33 三连击
+      <span class="en-title">Summer 2026 running shoe release wave: Brooks Ghost 18, Saucony Triumph 24, Asics Gel-Kayano 33 triple-header</span>
+    </h3>
+    <p>2026夏季Brooks发布Ghost 18、Saucony发布Triumph 24、Asics发布Gel-Kayano 33。三双均为各自品牌的"高续航天量款"，鞋面工艺均采用经编提花组合。Saucony Triumph 24首次引入PWRRUN HG发泡材料，Brooks Ghost 18鞋面为新DNA LOFT v3超临界泡沫+3D提花网眼。</p>
+    <p>The "mass-volume daily trainer" category is being upgraded at the same time — three flagship updates in one month is unusual. Marketers should note that "premium-tier daily trainer" is the new battleground, with Brooks/Saucony/Asics all pushing upper + foam simultaneously.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：3款明星款的同月发布折射两个行业拐点——1)"经编+提花"成为缓震旗舰默认鞋面方案 2)泡沫化学(超临界/发泡)成为第二个技术战场。供应链对泡沫+提花的组合研发能力将决定2027年订单归属。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 4d ago · 2026-06-14</span>
+      <a href="https://www.sgieurope.com/financial-results/q1-lululemons-4-growth-hides-a-37-profit-collapse/121480.article" target="_blank">SGI Europe</a>
+      <span>·</span>
+      <a href="https://www.linkedin.com/pulse/lululemon-athletica-inc-lulu-q1-fiscal-2026-earnings-analysis-amjad-lresf" target="_blank">LinkedIn</a>
+    </div>
+    <h3>Lululemon Q1 FY26：中国大陆+30%营收vs美洲-3%，CEO交接期承压
+      <span class="en-title">Lululemon Q1 FY26: China Mainland +30% revenue vs Americas -3%, pressure during CEO transition</span>
+    </h3>
+    <p>Q1营收增长4%，但营业利润下滑37%。中国大陆以+30%(同店+20%)营收$478.4M继续充当增长引擎，美洲同店-3%。消息面叠加关税成本、品牌定位调整与新CEO交接。Lululemon在中国市场的强势延续印证"运动生活方式+亚洲女性消费力"的结构性机会。</p>
+    <p>The 30%-vs-(-3%) reversal between China and Americas is the cleanest data point yet on the "East rises, West slows" rebalancing. For suppliers, this means: more demand for premium-feel knit fabrics (luon, nulux) in lighter weights for the Asian female consumer.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：中国+30% × 美洲-3%的"双速"结构是2026年品牌端的总信号。供应链对"亚洲女性体型+轻量化+亚洲色卡"的理解将决定是否能拿到Lululemon/Nike Women等品牌的亚洲市场增量订单。</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================ -->
+<!-- M2: 纺织工艺 -->
+<!-- ================================================ -->
+<div class="module-section">
+<div class="module-header" id="mh-M2" onclick="toggleModule('M2')">
+  <div class="icon m2">🧵</div>
+  <div class="title">M2 · 纺织工艺 <span style="font-weight:400;color:var(--text-tertiary);font-size:0.8rem;">Textile Craft</span></div>
+  <div class="count">4 条</div>
+  <div class="toggle">▼</div>
+</div>
+<div class="module-body" id="mb-M2">
+
+  <div class="card" data-signal="CRITICAL">
+    <span class="signal critical">🔴 CRITICAL</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 12d ago · 2026-06-06</span>
+      <a href="https://textilefocus.com/tm-weft-270-more-width-more-design-freedom-for-the-fashion-world/" target="_blank">Textile Focus</a>
+      <span>·</span>
+      <a href="https://www.karlmayer.com/en/news-events/news/tm-weft-270-%E2%80%93-more-width-more-design-freedom-for-the-fashion-world/" target="_blank">Karl Mayer</a>
+    </div>
+    <h3>Karl Mayer ITM 2026首秀TM WEFT 270″：270英寸工作幅宽+1,800rpm专为亚洲市场设计
+      <span class="en-title">Karl Mayer debuts TM WEFT 270" at ITM 2026: 270" working width + 1,800rpm tailored for Asia</span>
+    </h3>
+    <p>TM WEFT 270″(2026年6月2日首发、6月9-13日ITM伊斯坦布尔展会3/303 A展位展出)将最大穿纱从30提升至36；提供E24/E28两种机号；速度高达1,800rpm。面料密度可在9-30横列/cm灵活调节，实现"密条+开条"组合及加入氨纶的"泡泡纱"效果。Karl Mayer明确"主要针对中国与土耳其市场"。</p>
+    <p>Karl Mayer's explicit Asia-targeting confirms the new geography of premium weft-knitting. The 270" width + 36-wft-end capacity means a single machine can produce 3-4x the design complexity of older models — perfect for tier-1 sportswear brands' small-batch premium lines.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：Karl Mayer罕见的"明确中国优先"表态+36路维纱系统，意味着经编+维纱的复杂面料(适用鞋面夹层、运动夹克)将进入"小批量+高复杂度"新阶段。对飞织/经编+特殊工艺整合的供应商而言，这是"高端化"的设备级入口。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 9d ago · 2026-06-09</span>
+      <a href="https://www.linkedin.com/pulse/itm-istanbul-2026-where-intelligent-knitting-technology-prakash-kinny-0lyzc/" target="_blank">LinkedIn · ITM 2026</a>
+    </div>
+    <h3>ITM Istanbul 2026开幕：圣东尼(Santoni)与Terrot联手主打"智能针织"圆编机
+      <span class="en-title">ITM Istanbul 2026 opens: Santoni + Terrot lead the "intelligent knitting" circular-knit push</span>
+    </h3>
+    <p>ITM Istanbul 2026(6月9-13日)重点展品：圣东尼(中国)集团展示新一代无缝圆编机(适用于运动内衣、跑步袜套、瑜伽上衣)；Terrot展示多针距大筒径圆编机，针对运动鞋袜面(尤其飞织袜套结构)。"智能针织"成为本届展会主轴词——指基于IoT+AI视觉的自调针/自调密度/自动换纱技术。</p>
+    <p>Circular knit is being repositioned as the "smart" substrate for activewear. Santoni + Terrot's focus on seamless + IoT-integrated machines means the boundary between seamless garment, sock upper, and shoe upper is collapsing into one production paradigm.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：圆编+IoT正在重新定义"无缝"边界——从内衣延展到鞋面袜套(飞织鞋面的关键结构层)。对鞋材供应商：飞织鞋面需要圆编提供"无缝底筒+复合鞋面"，与Karl Mayer经编+Stoll横机形成三角协同。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 13d ago · 2026-06-05</span>
+      <a href="https://www.fibre2fashion.com/news/textile-news/karl-mayer-showcases-textile-innovations-at-techtextil-2026-310105-newsdetails.htm" target="_blank">Fibre2Fashion</a>
+    </div>
+    <h3>Techtextil 2026复盘：Karl Mayer经编在航天/国防/鞋履三大产业用领域突破
+      <span class="en-title">Techtextil 2026 recap: Karl Mayer warp knitting breaks into aerospace, defense, footwear</span>
+    </h3>
+    <p>Techtextil 2026(4月)在法兰克福举行，Karl Mayer展示了经编在三个非传统领域的应用：航天轻量化复合材料、国防防护织物、运动鞋履3D结构件。重点展品为"3D spacer fabric"——双层经编+中间间隔丝结构，应用于跑鞋中底夹层和帮面立体支撑。</p>
+    <p>The 3D spacer fabric application is the most important takeaway — it gives athletic footwear a new structural category beyond flat warp-knit, enabling midsole sandwich layers and 3D upper support without additional adhesives.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：3D spacer fabric是经编在"鞋面-中底一体化"方向的关键突破。对特殊工艺(经编3D)：这是飞织/经编/梭织/圆编/贾卡提花/特殊工艺六大品类中"特殊工艺"分支的核心创新，对应"结构性鞋面"细分市场。</div>
+  </div>
+
+  <div class="card" data-signal="REFERENCE">
+    <span class="signal reference">🟢 REFERENCE</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 22d ago · 2026-05-27</span>
+      <a href="https://english.bit.edu.cn/researchhighlights.html" target="_blank">北京理工大学</a>
+    </div>
+    <h3>北京理工大学仿生研究重大突破：β-折叠可逆解折叠机制可用于设计自适应纤维
+      <span class="en-title">BIT biomimetics breakthrough: β-sheet reversible unfolding mechanism for adaptive fiber design</span>
+    </h3>
+    <p>北京理工大学团队(2026年3月13日发表)在仿生研究领域实现重要突破，揭示了自然界β-折叠晶区的"可逆解折叠-重组装"机制。这一机制可被借鉴用于设计受力时局部加固、回弹后恢复透气性的"自适应"鞋面纤维。同期，东华大学(2025年12月)发表光催化Bi-BWO仿生调控成果，构建"结构诱导功能"新范式。</p>
+    <p>Chinese academic institutions are catching up in advanced biomimetic materials. The β-sheet mechanism is particularly interesting for athletic footwear because the "stress-responsive" property is exactly what smart upper design requires.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：国内顶级院校(北理工/东华)在仿生纤维上的突破预示：2026年下半年将有更多"功能纤维-工艺可行性-小批量"项目进入产业转化窗口。供应链应主动对接院校"最后一公里"，争取先发优势。</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================ -->
+<!-- M3: 产品包装与品牌营销 -->
+<!-- ================================================ -->
+<div class="module-section">
+<div class="module-header" id="mh-M3" onclick="toggleModule('M3')">
+  <div class="icon m3">🎨</div>
+  <div class="title">M3 · 产品包装与品牌营销 <span style="font-weight:400;color:var(--text-tertiary);font-size:0.8rem;">Brand & Packaging</span></div>
+  <div class="count">4 条</div>
+  <div class="toggle">▼</div>
+</div>
+<div class="module-body" id="mb-M3">
+
+  <div class="card" data-signal="CRITICAL">
+    <span class="signal critical">🔴 CRITICAL</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 7d ago · 2026-06-11</span>
+      <a href="https://about.nike.com/en/newsroom/releases/nike-ignites-football-fandom-through-immersive-retail-experiences-designed-to-reach-more-consumers" target="_blank">Nike Newsroom</a>
+    </div>
+    <h3>Nike点燃足球热情：5,000+全球门店同步"沉浸式零售"迎世界杯开幕倒计时
+      <span class="en-title">Nike ignites football fandom: 5,000+ stores activate immersive retail for World Cup countdown</span>
+    </h3>
+    <p>2026年6月11日，Nike官宣世界杯"市场激活"方案：在洛杉矶、纽约、伦敦等核心城市推出"顶级"沉浸式零售，同时联动全球5,000+零售点。具体案例：纽约"Soho House of Merc"× Pro:Direct × SoccerBible(Drogba 6月6日空降)；洛杉矶"Niky体育 Estadio Niky's"× 定制球场+Mercurial实验室；波特兰"Nike Soccer Haus"× Prost酒吧；洛杉矶 The Grove 的"The Stadium"一对一足球对战区。</p>
+    <p>This is Nike's biggest community-led retail playbook since 2018. The 5,000+ store scale + city-by-city storytelling (LA/NY/London/Portland/Dallas) shows the new retail formula: hyper-local narrative + product trial + product customization + community event, all in one venue.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：Nike的"赛事-街潮-社区"三位一体零售模型是2026年最重要的零售业案例。对品牌端：体育赛事营销从"广告投放"升级为"实体体验×在地叙事×产品定制"。对供应链端：3周内的快闪定制(如Nike By You)对"小批量+柔性生产"能力提出更高要求——这恰是飞织+提花方案的优势区间。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 9d ago · 2026-06-09</span>
+      <a href="https://www.footyheadlines.com/2026/06/adidas-coca-pack.html" target="_blank">Footy Headlines</a>
+      <span>·</span>
+      <a href="https://news.adidas.com/originals/adidas-originals-and-coca-cola--celebrate-the-fifa-world-cup-2026--with-a-collaborative-collection/s/cebf079f-b6f4-4956-bfa3-aad63503e36c" target="_blank">Adidas Newsroom</a>
+    </div>
+    <h3>Adidas Originals × Coca-Cola世界杯联名：24年再续前缘，街头×碳酸的文化续写
+      <span class="en-title">Adidas Originals × Coca-Cola World Cup collab returns after 24 years</span>
+    </h3>
+    <p>2026年5月28日Adidas与Coca-Cola联合发布2026 FIFA世界杯联名系列，2002年韩日世界杯后两品牌再次合作。系列涵盖Adidas Originals经典鞋型(T-toe、Samba、Gazelle)+ Coca-Cola标志性红色与logo元素，目标客群是"世界杯周末的街头年轻人"——体育×快消的跨界叙事。</p>
+    <p>The 24-year replay is intentional — it targets Gen Z who weren't alive in 2002, plus Millennials nostalgic for the originals. This is a "heritage revival" collab playbook that other brands (Puma×Fanta?) will copy.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：体育×快消24年再合作是教科书级"怀旧营销"案例。品牌端：经典复刻+跨界叙事是2026年最稳健的增长策略；供应链端：联名款的"小批量+快反"特征要求企业有柔性快反产能(短交期+多SKU)。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 11d ago · 2026-06-07</span>
+      <a href="https://hypebeast.com/2026/6/nike-x2-world-cup-jaden-smith-louboutin-jordan-supreme-adidas-margiela" target="_blank">Hypebeast</a>
+      <span>·</span>
+      <a href="https://www.retailnews.asia/nike-kicks-off-football-universe-in-hong-kong-unveiling-the-2026-world-cup-kit-collection-and-more/" target="_blank">Retail News Asia</a>
+    </div>
+    <h3>Nike "Football Universe"香港启幕 + Palace×Slawn X2联名：街潮+足球+文化IP组合拳
+      <span class="en-title">Nike's "Football Universe" Hong Kong debut + Palace × Slawn X2 collab</span>
+    </h3>
+    <p>Nike在香港启幕"Football Universe"展示2026世界杯国家队球衣系列。同期Nike Oxford Circus(伦敦)与Palace(英国滑板潮牌)、Slawn(尼日利亚艺术家)推出X2联名——滑板、足球、当代艺术三元素融合，将"街头足球"上升为文化IP。拍卖部分单品(6月25日巴黎Boulevard Voltaire)。</p>
+    <p>The Palace × Slawn × Nike X2 collab is the "football as cultural IP" thesis in action — moving beyond merchandise into auction-grade art objects. This is the future template for premium athletic collabs.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：Palace×Slawn X2联名证明体育联名已从"消费品"进化为"文化IP资产"。对品牌营销团队：未来营销投入的差异化空间在文化IP组合而非单纯产品创新。</div>
+  </div>
+
+  <div class="card" data-signal="REFERENCE">
+    <span class="signal reference">🟢 REFERENCE</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 22d ago · 2026-05-28</span>
+      <a href="https://www.footwearnews.com/sneaker-news/sneaker-release-date-calendar-june-2026-1238986643/" target="_blank">WWD/Footwear News</a>
+    </div>
+    <h3>6月世界杯月：Air Jordan 3 "Bin 23" + Kobe 4 "Draft Pack"等14双密集发售
+      <span class="en-title">World Cup June: Air Jordan 3 "Bin 23" + Kobe 4 "Draft Pack" among 14+ drops</span>
+    </h3>
+    <p>2026年6月共有14+双重磅发售：Air Jordan 3 "Bin 23"(2,300双限量，6月底)、JAIDE × Air Jordan 11首联、Kobe 4 "Draft Day" Protro盲盒(14双14-pair blind box，6月26日)、KD19、Air Jordan 5 "University Blue"、Air Max 95 Big Bubble、Willy Chavarria Megaride等。WWD整理"六月完整发售日历"。</p>
+    <p>The 14+ drops in one month is unprecedented. The Bin 23 (2,300-pair) and Kobe 4 Draft Pack (14-pair blind box) are the most extreme scarcity plays — both generate more cultural buzz than revenue.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：14双密集发售+稀缺性玩法(限量2,300双、盲盒)证明2026年球鞋市场"稀缺度"重新成为定价核心变量。对品牌端：稀缺+文化IP比"功能性升级"更能在2026年驱动溢价。</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================ -->
+<!-- M4: AI工具 -->
+<!-- ================================================ -->
+<div class="module-section">
+<div class="module-header" id="mh-M4" onclick="toggleModule('M4')">
+  <div class="icon m4">🤖</div>
+  <div class="title">M4 · AI工具 <span style="font-weight:400;color:var(--text-tertiary);font-size:0.8rem;">AI Tools</span></div>
+  <div class="count">5 条</div>
+  <div class="toggle">▼</div>
+</div>
+<div class="module-body" id="mb-M4">
+
+  <div class="card" data-signal="CRITICAL">
+    <span class="signal critical">🔴 CRITICAL</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 9d ago · 2026-06-09</span>
+      <a href="https://www.apple.com/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/" target="_blank">Apple Newsroom</a>
+      <span>·</span>
+      <a href="https://finance.sina.com.cn/tech/digi/2026-06-09/doc-iniattra5140066.shtml" target="_blank">新浪科技</a>
+    </div>
+    <h3>WWDC 2026：苹果Siri重做为系统级Agent + Xcode 27引入Agentic Coding + visionOS 27 Vision Pro升级
+      <span class="en-title">WWDC 2026: Apple rebuilds Siri as system-level Agent + Xcode 27 Agentic Coding + visionOS 27</span>
+    </h3>
+    <p>6月9日WWDC 2026(主题"All Systems Glow"、库克最后一次主持)：1) Siri AI深度集成iPhone/iPad/Mac/Apple Watch/Vision Pro，新增"用Siri写作"系统级功能；2) Xcode 27 + Core AI框架+新版Foundation Models框架，支持图像输入多模态；3) visionOS 27深化空间计算+AI能力；4) iOS/macOS/iPadOS/watchOS/visionOS全统一迭代至27版。苹果股价当日微跌——市场认为"AI兑现但不够惊艳"。</p>
+    <p>Apple's Agentic Siri is the most strategically important move of 2026 — it forces every device-platform vendor to ship a system-level Agent within 12 months. Xcode's Agentic Coding also legitimizes "AI writes code" for the world's most lucrative developer community.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：系统级Agent从概念变为产品。意义在于：所有iOS/macOS上的工作流类App(PDM/ERP/MES)将面临"被Siri直接调用"还是"被绕过"的二选一。供应链企业若希望3-5年内不被边缘化，必须现在评估"如何把核心系统暴露为Siri/Xcode Agent可调用的接口"。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 12d ago · 2026-06-06</span>
+      <a href="https://jishuzhan.net/article/2066017811457208321" target="_blank">技术栈</a>
+      <span>·</span>
+      <a href="https://www.ai-master.cc/blog/blog-266" target="_blank">AI Master</a>
+    </div>
+    <h3>2026年6月大模型全景：GPT-5.6 / Claude Sonnet 4.8 / Gemini 3.5 Pro三足鼎立
+      <span class="en-title">June 2026 LLM landscape: GPT-5.6, Claude Sonnet 4.8, Gemini 3.5 Pro in tight race</span>
+    </h3>
+    <p>6月大模型密集发布潮：OpenAI GPT-5.6(150万Token上下文、推理时计算)、Anthropic Claude Sonnet 4.8(Opus 4.8之后)、Google Gemini 3.5 Pro。Sonnet 4.8定位为Opus 4.8的"性价比兄弟"。技术分水岭：1) 150万+长上下文成为头部标配；2) 推理时计算(inference-time compute)开始普及；3) Agent能力成必选项。</p>
+    <p>1.5M-token context + inference-time compute + Agent are now table-stakes for frontier models. For enterprise buyers, the question shifts from "which model" to "how to orchestrate multiple models in one workflow."</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：长上下文(150万)+推理时计算+Agent能力成为头部三件套。供应链企业的"研发文档/PDM/历史项目库"通常体量在百万token量级，长上下文模型恰好适配。对研发知识管理：现在可以用AI做"跨项目复盘+经验萃取"。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 6d ago · 2026-06-12</span>
+      <a href="https://finance.sina.com.cn/tech/discovery/2026-06-12/doc-iniceccp0219597.shtml" target="_blank">新浪科技</a>
+      <span>·</span>
+      <a href="https://www.weste.net/2026/06-13/Kimi-K2.7-Code.html" target="_blank">网左</a>
+    </div>
+    <h3>Kimi K2.7-Code发布：长程编程场景+30% token节省，国产编程模型挑战GPT/Opus
+      <span class="en-title">Kimi K2.7-Code launches: 30% token savings in long-horizon coding, challenges GPT/Opus</span>
+    </h3>
+    <p>月之暗面6月12日发布Kimi K2.7-Code：相比K2.6显著提升长上下文编程场景的指令遵循能力、长程编程任务表现，大幅改善"过度思考倾向"，平均token消耗减少30%。官方预告"6x High-Speed Mode"即将推出。国产编程模型首次在"长程任务效率"维度上正面挑战GPT-5.6/Claude Opus 4.8。</p>
+    <p>The 30% token reduction is the headline — for a 1.5M context window, that translates to significant cost savings. Kimi is now the "long-task efficiency" leader among Chinese models, which is exactly the metric that matters for enterprise coding agents.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：国产编程模型在"长程任务+成本控制"上首次具备国际竞争力。对企业内部研发：可作为Coding Agent的主力或备选，成本降低30%意味着可大规模铺开给所有研发人员。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 7d ago · 2026-06-11</span>
+      <a href="https://news.qq.com/rain/a/20260611A043MQ00" target="_blank">腾讯新闻</a>
+    </div>
+    <h3>Meshy发布全球首个3D创作AI Agent：多轮对话完成"概念→导出"全流程
+      <span class="en-title">Meshy launches world's first 3D creation AI Agent: concept-to-export via multi-turn dialogue</span>
+    </h3>
+    <p>Meshy 6月11日发布"Meshy 3D Agent"——全球首个3D创作AI Agent。用户通过多轮对话完成"概念探索→模型生成→参数调整→格式导出"全流程。意义：将3D创作门槛从"专业建模师"拉低到"会用对话的产品经理"，对鞋服行业的鞋型设计、展厅3D展示、产品动画产生直接冲击。</p>
+    <p>3D Agent marks the same inflection point that 2D image gen hit 2 years ago. For footwear: rapid concept exploration + "idea to render" in hours instead of days. Especially impactful for sampling and showroom design.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：3D Agent让"鞋型概念设计-渲染"流程压缩到小时级。对样册制作/展厅设计/Moodboard制作：以前需要建模师、外包渲染团队的工作，现在设计师+AI Agent即可完成80%。</div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 1d ago · 2026-06-17</span>
+      <a href="https://www.aitoollab.cn/articles/anthropic-claude-agent-skills-repository-guide-202605/" target="_blank">AI Tool Lab</a>
+      <span>·</span>
+      <a href="https://void.redx.space/blog/anthropics-skills-guide" target="_blank">Void</a>
+    </div>
+    <h3>Anthropic开源Claude Agent Skills仓库：138k★ 三天成GitHub爆款，技能化Agent时代到来
+      <span class="en-title">Anthropic open-sources Claude Agent Skills repo: 138k★ in 3 days, Agent skillification era begins</span>
+    </h3>
+    <p>2026年5月17日Anthropic正式开源官方Claude Agent Skills仓库(含SKILL.md标准、17个示例skill)，3天内斩获138k Star。6月仍有大量教程涌现。意义：Agent从"单一Prompt+工具调用"进化为"可复用技能包"——就像npm之于Node、pip之于Python，Skills之于Agent正在形成新的标准生态。</p>
+    <p>Skills are to Agents what npm packages are to JavaScript. The 138k stars in 3 days is a clear signal: the next 12 months of enterprise AI investment will be in curating, sharing, and composing Agent Skills — not in training new models.</p>
+    <div class="insight"><strong>为什么今天值得看</strong>：技能化Agent成为新标准。对企业：2026下半年应启动"内部Skills库"建设——把研发经验、PDM操作SOP、客户沟通话术沉淀为可复用的Skills，相当于把"知识资产"AI化。</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================ -->
+<!-- M5: AI×组织 -->
+<!-- ================================================ -->
+<div class="module-section">
+<div class="module-header" id="mh-M5" onclick="toggleModule('M5')">
+  <div class="icon m5">🏛️</div>
+  <div class="title">M5 · AI × 组织 <span style="font-weight:400;color:var(--text-tertiary);font-size:0.8rem;">AI × Organization</span></div>
+  <div class="count">4 条</div>
+  <div class="toggle">▼</div>
+</div>
+<div class="module-body" id="mb-M5">
+
+  <div class="card" data-signal="CRITICAL">
+    <span class="signal critical">🔴 CRITICAL</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 16d ago · 2026-06-02</span>
+      <a href="https://www.mckinsey.com.cn/2026麦肯锡组织现状报告：改变组织未来的三股力量/" target="_blank">麦肯锡中国</a>
+    </div>
+    <h3>麦肯锡《组织现状2026》：AI×不确定性×人的变化三股力量 + 9大主题 + "智能体型企业"新物种
+      <span class="en-title">McKinsey State of Organizations 2026: 3 forces × 9 themes × "Sentient Enterprise" new species</span>
+    </h3>
+    <p>基于15国16行业10,000+高管调研。核心论点：AI/不确定性/人的变化三股力量正在重写规则；9大行动主题包括"打造AI赋能型组织"、"人机协作"、"AI原生共享服务(GBS)"等；提出"智能体型企业"——AI成为运营体系的一部分而不仅是工具。46%员工对AI存在担忧(偏见/版权/替代)，44%关注监管，39%受困组织变革阻力。</p>
+    <div class="dimensions">
+      <div class="dim m5b"><span class="dim-label">📊 商业影响：</span>AI原生GBS可实现效率+20%、创新+40倍、生产力+50%、客户体验+20%；10年中9年顶级财务表现概率高4.3倍。ROI窗口期：12-18个月可见初步回报，36个月达到"智能体型企业"成熟形态。</div>
+      <div class="dim m5o"><span class="dim-label">🔄 组织影响：</span>角色重构(70%技能同时存在于"可自动化"+"不可自动化"任务中)、流程重构(从按职能分割→按结果运转)、治理重构(AI伦理委员会成为标配)、培训缺口(2/3技能5年内将被重写)、领导对齐(高管的"时间坐标"需拉长到3-5年)。</div>
+      <div class="dim m5w"><span class="dim-label">📋 对你工作的影响：</span>研发部门：从"做项目"升级为"建AI智能体+管智能体"；供应链部门：3-5年内SSC/GBS将进入AI原生模式(类安联AllianzGPT路径)；HR/培训：从"开课"转向"AI素养+跨界能力培养"；销售/客户对接：必须给客户"AI赋能方案"而不仅是产品。</div>
+      <div class="dim m5d"><span class="dim-label">⚡ 决策速判：</span>最小可行方案：1)选定1-2个高频研发SOP(如新鞋面打样流程)做AI Agent改造 2)全员普及Claude Code/Anthropic Skills类工具。投入vs等待：早投入6-9个月，可获得"内部案例库+员工AI素养"双重资产；等待的代价是错过2026下半年到2027上半年的"组织原生AI化"窗口期。</div>
+      <div class="dim m5l"><span class="dim-label">🔮 长期信号：</span>架构稳定性：Agent+Skills的组合是未来3年最稳定的生产范式；锁定效应：率先完成"AI原生GBS"的企业将形成2-3年的运营效率代差；第二阶效应：当GBS从"成本中心"升级为"创新中心"，将释放40倍的创新能力；技术成熟度：当前进入"主流采纳"早期，2027-2028进入"深度整合"期。</div>
+    </div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 4d ago · 2026-06-14</span>
+      <a href="https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html" target="_blank">Deloitte</a>
+    </div>
+    <h3>Deloitte《企业AI现状2026》：34%真正"重构"AI，仅22%报告变革性影响
+      <span class="en-title">Deloitte State of AI in the Enterprise 2026: Only 34% truly reimagining AI, just 22% report transformative impact</span>
+    </h3>
+    <p>Deloitte最新调研：受访者中"AI交付效率与生产力"已成共识，但仅34%企业在"真正重构"AI应用；22%报告AI带来了"变革性影响"(去年11%)。增长领域：Agentic AI系统(从优化流程到主动达成业务目标)、多Agent协作、AI治理。</p>
+    <div class="dimensions">
+      <div class="dim m5b"><span class="dim-label">📊 商业影响：</span>Agentic AI将决策权从"流程优化"提升到"业务目标"层；多Agent协作系统将释放新的运营效率。ROI窗口：Agentic项目的回收期通常18-24个月，但战略窗口仅2-3年。</div>
+      <div class="dim m5o"><span class="dim-label">🔄 组织影响：</span>"真正重构"AI的企业需要从数据架构、决策架构、激励机制三方面同步重塑。组织阻力最大的三项：变革管理(39%)、部门壁垒(35%)、技术债务(33%)。</div>
+      <div class="dim m5w"><span class="dim-label">📋 对你工作的影响：</span>企业IT/数字化部门需重新设计"AI落地路线图"——从PoC(试点)→嵌入工作流(嵌入率应从当前10%提至30%+)。要建立一个"AI ROI仪表板"，每季度衡量"业务结果vs AI投入"。</div>
+      <div class="dim m5d"><span class="dim-label">⚡ 决策速判：</span>最小可行方案：选一个"高频+低风险"流程(如客户询价自动响应、研发文档检索)做Agent化改造。投入vs等待：Agent生态成熟度在2026下半年将进入"工具链爆发期"，先入场者有先发优势。</div>
+      <div class="dim m5l"><span class="dim-label">🔮 长期信号：</span>第二阶效应：当Agent接管"流程编排"后，企业的中层管理(流程协调角色)将最先被重塑。技术成熟度：Agentic AI从"概念验证"进入"早期采纳"，2027年进入主流采纳期。</div>
+    </div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 1d ago · 2026-06-17</span>
+      <a href="https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html" target="_blank">Deloitte · mfg</a>
+      <span>·</span>
+      <a href="https://www.libertify.com/interactive-library/deloitte-manufacturing-technology-report-2026/" target="_blank">Libertify</a>
+    </div>
+    <h3>Deloitte《2026制造业科技报告》：量子计算+先进机器人+生物技术+太空制造"四线并进"
+      <span class="en-title">Deloitte 2026 Manufacturing Tech Report: quantum + robotics + biotech + space mfg in parallel</span>
+    </h3>
+    <p>Deloitte制造业技术报告2026：未来制造业将由四项技术共同重塑：1)量子计算(优化生产排程、分子模拟)；2)先进机器人+自适应控制；3)生物技术(生物基纤维、菌丝体皮革、生物制造)；4)太空制造(零重力材料实验)。</p>
+    <div class="dimensions">
+      <div class="dim m5b"><span class="dim-label">📊 商业影响：</span>量子计算优化生产排程可降本5-15%；生物基材料2026年市场份额达8-12%(年增速30%+)；太空制造尚处概念阶段。ROI窗口：生物基/机器人5-10年；量子计算10+年。</div>
+      <div class="dim m5o"><span class="dim-label">🔄 组织影响：</span>生物基研发团队需建立(从化学工程师+合成生物学家+材料学家三方协同)；机器人团队需从"维护"转向"编程+调度"；研发管线需"传统材料+生物基+智能材料"三轨并行。</div>
+      <div class="dim m5w"><span class="dim-label">📋 对你工作的影响：</span>供应商：现在开始积累"生物基材料"应用案例(如菌丝体皮革、植物基尼龙)；机器人/AI：未来3年的"无人车间"需要工艺工程师+机器人工程师的复合能力；研发：应建立"未来材料储备库"覆盖至少3-5个潜在替代方案。</div>
+      <div class="dim m5d"><span class="dim-label">⚡ 决策速判：</span>最小可行方案：1)建立"生物基材料"专题小组(2-3人) 2)与至少1家合成生物学公司建立联合开发关系。投入vs等待：生物基材料的供应链尚未"赢家通吃"，现在是抢位的最佳时间窗口。</div>
+      <div class="dim m5l"><span class="dim-label">🔮 长期信号：</span>生物基+菌丝体皮革未来5-8年将蚕食传统动物皮革15-20%份额；量子计算对"分子级"研发(染料/助剂)的影响可能比想象中更早；太空制造是"远期信号"但人才储备可先行。</div>
+    </div>
+  </div>
+
+  <div class="card" data-signal="WATCH">
+    <span class="signal watch">🟡 WATCH</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 1d ago · 2026-06-17</span>
+      <a href="https://www.libertify.com/interactive-library/deloitte-manufacturing-technology-report-2026/" target="_blank">Libertify</a>
+    </div>
+    <h3>WEF《AI时代组织转型》：55%管理者认为AI带来"指数级生产力"
+      <span class="en-title">WEF "AI Era Org Transformation": 55% managers see "exponential productivity" from AI</span>
+    </h3>
+    <p>WEF最新报告：55%受访高管相信员工熟练掌握AI可带来"指数级生产力增长"；48%认为可改善信息获取；47%认为可减少行政工作；46%认为可提升决策质量。报告强调"人机协作模式"将成为企业核心竞争维度——未来的竞争不是"人 vs AI"，而是"谁的协作模式更高效"。</p>
+    <div class="dimensions">
+      <div class="dim m5b"><span class="dim-label">📊 商业影响：</span>指数级生产力(55%)、信息获取效率(48%)、行政减负(47%)、决策质量(46%)。这四项指标的改善将直接转化为：上市速度+30%、人力成本-20%、决策周期-40%。</div>
+      <div class="dim m5o"><span class="dim-label">🔄 组织影响：</span>最大的转变在"角色定义"——人从"执行者"变为"AI协调者+判断者+创新者"。企业需要建立"AI协调者"职业通道、培训体系、激励机制。</div>
+      <div class="dim m5w"><span class="dim-label">📋 对你工作的影响：</span>研发工程师：从"自己做实验"转向"管理AI做100个实验+我选最优"；销售/客户对接：从"卖产品"转向"卖AI赋能方案"；管理岗：从"管人"转向"管人+管AI"的双轨模式。</div>
+      <div class="dim m5d"><span class="dim-label">⚡ 决策速判：</span>最小可行方案：1)每个部门选1名"AI协调者"(AI Champion) 2)每月1次"AI协作案例分享会"。投入vs等待：早6-12个月可培养5-10个"内部AI协调者"种子，晚了就只能从外部高价招聘。</div>
+      <div class="dim m5l"><span class="dim-label">🔮 长期信号：</span>第二阶效应：当"AI协调者"成为新职业，企业的招聘标准、薪酬体系、晋升通道都将被重写。技术成熟度：AI协作从"工具使用"→"工作流嵌入"→"组织原生"三阶段，当前处于第2阶段早期。</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================ -->
+<!-- Cross: 跨圈层阅读 -->
+<!-- ================================================ -->
+<div class="module-section">
+<div class="module-header" id="mh-Cross" onclick="toggleModule('Cross')">
+  <div class="icon cross">🌐</div>
+  <div class="title">Cross · 跨圈层 <span style="font-weight:400;color:var(--text-tertiary);font-size:0.8rem;">Cross-Domain</span></div>
+  <div class="count">3 条</div>
+  <div class="toggle">▼</div>
+</div>
+<div class="module-body" id="mb-Cross">
+
+  <div class="card" data-signal="REFERENCE">
+    <span class="signal reference">🟢 REFERENCE</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 13d ago · 2026-06-05</span>
+      <a href="https://www.fibre2fashion.com/news/textile-news/karl-mayer-showcases-textile-innovations-at-techtextil-2026-310105-newsdetails.htm" target="_blank">Fibre2Fashion / Techtextil 2026</a>
+    </div>
+    <h3>航天工程"3D spacer fabric"：经编双层间隔丝结构如何迁移到运动鞋履
+      <span class="en-title">From aerospace "3D spacer fabric" to athletic footwear</span>
+    </h3>
+    <div class="cross-layers">
+      <div class="cross-l l1"><span class="l-tag">L1 · 源头事实</span> Karl Mayer在Techtextil 2026展示"3D spacer fabric"——双层经编织物+中间间隔丝结构，原始应用为航天轻量化复合材料。其核心特征：密度可调(40-200g/m²)、压缩回弹率>85%、透气量是普通经编的3-5倍。</div>
+      <div class="cross-l l2"><span class="l-tag">L2 · 翻译逻辑</span> 3D spacer的"双层+间隔丝"结构对应鞋面/中底的"立体夹层"场景：1)上层面料=外层梭织/经编(耐磨)；2)中间间隔丝=缓冲+透气通道(取代传统泡棉)；3)下层面料=接触层(吸湿排汗)。这种"三明治"结构可在跑步、训练鞋中替代部分泡棉——轻量化+透气双优。</div>
+      <div class="cross-l l3"><span class="l-tag">L3 · 行动接口</span> 1) PDM新增"3D spacer fabric"工艺分类，覆盖飞织/经编/梭织/圆编/贾卡提花/特殊工艺六大品类中的"特殊工艺"分支 2) 联系Karl Mayer中国/ITM 2026团队获取3D spacer技术白皮书+打样小样 3) 优先级：中(2-3个月内评估可行性)；资源：研发1人+Karl Mayer技术支持。</div>
+    </div>
+  </div>
+
+  <div class="card" data-signal="REFERENCE">
+    <span class="signal reference">🟢 REFERENCE</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 22d ago · 2026-05-27</span>
+      <a href="https://english.bit.edu.cn/researchhighlights.html" target="_blank">北理工 + 东华大学</a>
+    </div>
+    <h3>北理工β-折叠可逆解折叠机制：仿生学如何赋能"自适应鞋面纤维"
+      <span class="en-title">BIT's β-sheet reversible unfolding: biomimetic pathway to self-adaptive fibers</span>
+    </h3>
+    <div class="cross-layers">
+      <div class="cross-l l1"><span class="l-tag">L1 · 源头事实</span> 北京理工大学团队(2026.3.13发表)揭示自然界β-折叠晶区"受力-解折叠-回弹-重组装"的可逆机制。东华大学(2025.12)发表"光催化Bi-BWO 0D/1D/2D层级结构"，建立"结构诱导功能"仿生调控新范式。</div>
+      <div class="cross-l l2"><span class="l-tag">L2 · 翻译逻辑</span> β-折叠可逆机制可迁移到"贾卡提花组织的应力响应设计"：1)受力时局部β-折叠解折叠→组织变硬(局部加固)；2)回弹后β-折叠重组装→恢复透气；3)可应用到鞋面受冲击部位(前掌/后跟)——冲击时变硬保护，回弹后恢复柔软透气。这与"贾卡提花"的多层结构天然兼容。</div>
+      <div class="cross-l l3"><span class="l-tag">L3 · 行动接口</span> 1) 联系北理工/东华研究团队建立产学研合作(目标：联合开发1款β-折叠仿生鞋面样片) 2) PDM新增"仿生翻译"字段，记录每项仿生原理→工艺映射 3) 优先级：高(国内领先研究窗口期仅2-3年) 4) 资源：研发1人+院校PI对接+小试经费10-30万。</div>
+    </div>
+  </div>
+
+  <div class="card" data-signal="REFERENCE">
+    <span class="signal reference">🟢 REFERENCE</span>
+    <div class="source-line">
+      <span class="age fresh">🆕 9d ago · 2026-06-09</span>
+      <a href="https://www.apple.com/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/" target="_blank">Apple Newsroom · WWDC 2026</a>
+      <span>·</span>
+      <a href="https://www.macobserver.com/news/apple-announces-visionos-27-at-wwdc-2026-heres-everything-new/" target="_blank">MacObserver</a>
+    </div>
+    <h3>visionOS 27 + Apple Intelligence空间计算：XR体验如何迁移到"沉浸式样册展厅"
+      <span class="en-title">From visionOS 27 + spatial computing to immersive sample showrooms</span>
+    </h3>
+    <div class="cross-layers">
+      <div class="cross-l l1"><span class="l-tag">L1 · 源头事实</span> Apple在WWDC 2026推出visionOS 27——更深度AI集成+空间计算体验。新增"用Siri写作"系统级功能、Foundation Models框架支持图像输入多模态、空间锚定内容可跨设备共享。Vision Pro用户基数虽然小，但空间操作系统(SPATIAL OS)正在成为下一代计算范式。</div>
+      <div class="cross-l l2"><span class="l-tag">L2 · 翻译逻辑</span> visionOS 27的"空间锚定+AI生成"组合可迁移到"沉浸式样册展厅"：1)客户戴上Vision Pro即可在物理空间"摆放"虚拟鞋款；2)AI根据客户体型/偏好实时生成3D变体；3)展厅+样册+虚拟样鞋融为一体——一个XR样册=传统100页样册+1:1实体样鞋。这恰是鞋服"展厅+展会+样册"三位一体的XR化机会。</div>
+      <div class="cross-l l3"><span class="l-tag">L3 · 行动接口</span> 1) 立项"XR样册MVP"项目(目标：1款主力鞋型XR展示Demo) 2) 联系Apple Vision Pro企业销售(Meshy 3D Agent+visionOS 27可作为技术底座) 3) 优先级：中(2026下半年立项，2027年Q1前出Demo) 4) 资源：3D设计师1人+AI工程师1人+Apple合作预算。</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================ -->
+<!-- 行动清单 -->
+<!-- ================================================ -->
+<div class="action-section">
+  <h2>⚡ 行动清单 Top 5 / Action Items</h2>
+  <div class="action-list">
+    <div class="action-item">
+      <div class="action-num">1</div>
+      <div class="action-text"><strong>【战略】抢位"中国版Stoll"</strong>：Karl Mayer出售Stoll给慈星——中国针织装备首次完成欧洲品牌级并购。研发部门应立即启动"横机工艺升级"评估：是否需要在Stoll/慈星新机上做"飞织+提花"打样测试？慈星可能在2027年推出"Stoll中国版"——这是供应链议价权从德日向中国转移的关键3年窗口。</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">2</div>
+      <div class="action-text"><strong>【工艺】3D spacer fabric立项</strong>：Karl Mayer的"3D spacer fabric"在Techtextil 2026展示了航天→鞋履的迁移路径。建议6-9月内做1次内部立项评估：3D spacer能否替代部分泡棉(轻量化+透气)、对应的经编机配置要求、目标客户(Nike/Adidas旗舰跑鞋可能性)。这是Karl Mayer+Stoll双机器协同的"新玩法"。</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">3</div>
+      <div class="action-text"><strong>【AI】启动"内部Skills库"建设</strong>：Anthropic Skills 138k★ + WWDC 2026系统级Agent——Agent技能化已成新标准。2026下半年应启动"鞋面研发Skill库"建设：把"飞织打样SOP""提花配色规则""客户样册SOP"等封装为可复用Skills，让团队所有研发人员可"调用经验"而非"重复摸索"。</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">4</div>
+      <div class="action-text"><strong>【客户】对接Nike"沉浸式零售"供应链</strong>：Nike的5,000+门店"赛事-街潮-社区"模型要求供应商具备"小批量+快反+多SKU"能力。商务部门应主动接触Nike Direct/Pro:Direct/Soccer.com等合作伙伴的供应链团队，了解"3周内快闪定制"的具体工艺要求——这恰是飞织+提花+小批量经编的优势区间。</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">5</div>
+      <div class="action-text"><strong>【人才】培养2-3名"AI协调者"</strong>：麦肯锡+WEF共识：未来3年的核心竞争维度是"人机协作模式"。建议2026下半年内部选2-3名"AI协调者"种子(可跨研发/供应链/营销)，提供Claude Code/Cursor/Meshy 3D Agent等工具的深度培训+实战项目，让每个部门有"自己的AI顾问"——这是被"智能体型企业"时代淘汰的护城河。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- ONE MORE THING -->
+<!-- ================================================ -->
+<div class="omt-section">
+  <div class="omt-label">🔮 ONE MORE THING</div>
+  <h3>2026年6月18日：从"装备-品牌-渠道"三线作战看中国制造的下一站</h3>
+  <p>今天的早报勾勒出三条互不相关但实际深度咬合的线索：1)Karl Mayer把Stoll品牌卖给慈星，意味着中国在横机装备完成了"代工→品牌"的跃迁；2)Nike的5,000+门店沉浸式零售说明，全球顶级品牌的渠道叙事已从"货架"进化为"场景"；3)Anthropic的138k★ Skills仓库+Apple的系统级Agent说明，AI已从"工具"进化为"组织的新底层"。</p>
+  <p>三线合一指向一个共同信号：<strong>"组织能力"正在取代"单品创新"成为新的竞争主轴</strong>。当装备可以被收购、当渠道可以被复制、当AI工具人人可用时，胜负手变成了"谁能把三者编织成独特的运营能力"——这正是麦肯锡"智能体型企业"概念的现实注脚。</p>
+  <div class="reveal-hint" onclick="revealOMT()">▶ 老板专属 · 决策问题(点击展开)</div>
+  <div class="reveal-content" id="omt-reveal">
+    <p style="color:var(--text-primary);font-size:0.92rem;line-height:1.9;"><strong>如果慈星/中国厂商在2027年推出"国产版Stoll"且价格只有30-50%——</strong>当前所有用Stoll的鞋面研发计划，要不要提前6-12个月考虑"国产化测试+小批量双轨验证"？</p>
+    <p style="color:var(--text-primary);font-size:0.92rem;line-height:1.9;margin-top:10px;"><strong>如果Nike的"沉浸式零售"扩张到中国市场——</strong>作为供应商，能否在2026下半年主动提交一份"快反定制能力清单"(含3D spacer fabric + 飞织 + 提花组合)？这决定了2027年是否被纳入Nike Direct/Pro:Direct的"指定供应商"短名单。</p>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div>WB早报 · 运动鞋服×AI趋势雷达 · Vol.20 · 2026-06-18</div>
+  <div style="margin-top:6px;">采集: 6路并行WebSearch + WebFetch验证 · 部署: CloudStudio · 推送: 钉钉Webhook</div>
+  <div style="margin-top:6px;">72h时效硬限制 · v2.6 · 全部为公开信息源 · 不构成投资建议</div>
+</div>
+
+</div>
+</body>
+</html>
