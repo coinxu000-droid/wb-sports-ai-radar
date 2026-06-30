@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WB早报 · 2026-06-30 | Sports × AI Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a28;
+  --bg-card-hover: #22223a;
+  --text-primary: #e8e8f0;
+  --text-secondary: #8888aa;
+  --text-tertiary: #5a5a7a;
+  --accent-cyan: #00d4ff;
+  --accent-blue: #4a90ff;
+  --accent-purple: #a855f7;
+  --accent-orange: #ff6b35;
+  --accent-pink: #ff3d8e;
+  --accent-green: #22c55e;
+  --accent-yellow: #fbbf24;
+  --accent-red: #ef4444;
+  --border-color: #2a2a3a;
+  --font-sans: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-sans); line-height: 1.7; -webkit-font-smoothing: antialiased; font-size: 15px; }
+.container { max-width: 980px; margin: 0 auto; padding: 20px 16px; }
+.hero { text-align: center; padding: 52px 0 40px; border-bottom: 1px solid var(--border-color); margin-bottom: 32px; position: relative; }
+.hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 700px; height: 220px; background: radial-gradient(ellipse, rgba(74,144,255,0.10) 0%, rgba(168,85,247,0.04) 40%, transparent 70%); pointer-events: none; }
+.hero .date { font-size: 0.82rem; color: var(--text-secondary); font-family: var(--font-mono); letter-spacing: 0.18em; margin-bottom: 10px; }
+.hero h1 { font-size: 2.4rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; }
+.hero .subtitle { color: var(--text-secondary); font-size: 1.02rem; font-weight: 400; }
+.hero .subtitle span { color: var(--accent-cyan); font-weight: 600; }
+
+.verdict-box { background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(0,212,255,0.08)); border: 1px solid rgba(168,85,247,0.35); border-radius: 14px; padding: 22px 28px; margin-bottom: 32px; }
+.verdict-box .label { font-size: 0.72rem; color: var(--accent-purple); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; font-family: var(--font-mono); }
+.verdict-box .text { font-size: 1.08rem; line-height: 1.8; }
+.verdict-box .text strong { color: var(--accent-cyan); }
+.verdict-box .text .en { display: block; margin-top: 8px; font-size: 0.92rem; color: var(--text-secondary); font-style: italic; }
+
+.kpi-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 36px; }
+.kpi-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px 14px; text-align: center; transition: all 0.25s; }
+.kpi-card:hover { border-color: var(--accent-cyan); transform: translateY(-2px); }
+.kpi-value { font-size: 1.7rem; font-weight: 800; font-family: var(--font-mono); }
+.kpi-value.cyan { color: var(--accent-cyan); }
+.kpi-value.orange { color: var(--accent-orange); }
+.kpi-value.purple { color: var(--accent-purple); }
+.kpi-value.pink { color: var(--accent-pink); }
+.kpi-value.green { color: var(--accent-green); }
+.kpi-value.yellow { color: var(--accent-yellow); }
+.kpi-value.blue { color: var(--accent-blue); }
+.kpi-value.red { color: var(--accent-red); }
+.kpi-label { font-size: 0.72rem; color: var(--text-secondary); margin-top: 4px; }
+
+.filter-bar { display: flex; gap: 8px; margin-bottom: 24px; align-items: center; flex-wrap: wrap; }
+.filter-label { font-size: 0.78rem; color: var(--text-secondary); margin-right: 4px; font-weight: 600; }
+.filter-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 6px 14px; border-radius: 8px; font-size: 0.78rem; cursor: pointer; font-family: var(--font-sans); font-weight: 600; transition: all 0.2s; }
+.filter-btn:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+.filter-btn.active { background: rgba(0,212,255,0.12); color: var(--accent-cyan); border-color: var(--accent-cyan); }
+.filter-btn.signal-red.active { background: rgba(239,68,68,0.12); color: var(--accent-red); border-color: var(--accent-red); }
+.filter-btn.signal-yellow.active { background: rgba(251,191,36,0.12); color: var(--accent-yellow); border-color: var(--accent-yellow); }
+.filter-btn.signal-green.active { background: rgba(34,197,94,0.12); color: var(--accent-green); border-color: var(--accent-green); }
+
+.module-section { margin-bottom: 40px; }
+.module-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; cursor: pointer; }
+.module-header h2 { font-size: 1.28rem; font-weight: 700; }
+.module-header .toggle { font-size: 0.78rem; color: var(--text-secondary); padding: 4px 12px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); cursor: pointer; transition: all 0.2s; font-family: var(--font-sans); }
+.module-header .toggle:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+.module-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.10em; padding: 3px 8px; border-radius: 4px; margin-right: 8px; font-family: var(--font-mono); }
+.module-tag.m1 { background: rgba(0,212,255,0.15); color: var(--accent-cyan); }
+.module-tag.m2 { background: rgba(255,107,53,0.15); color: var(--accent-orange); }
+.module-tag.m3 { background: rgba(168,85,247,0.15); color: var(--accent-purple); }
+.module-tag.m4 { background: rgba(74,144,255,0.15); color: var(--accent-blue); }
+.module-tag.m5 { background: rgba(255,61,142,0.15); color: var(--accent-pink); }
+.module-tag.m6 { background: rgba(34,197,94,0.15); color: var(--accent-green); }
+
+.news-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px 22px; margin-bottom: 14px; transition: all 0.25s; }
+.news-card:hover { border-color: var(--accent-cyan); background: var(--bg-card-hover); transform: translateY(-2px); }
+.news-card .card-header { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+.news-card .signal { font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; font-family: var(--font-mono); white-space: nowrap; }
+.signal.critical { background: rgba(239,68,68,0.18); color: var(--accent-red); }
+.signal.watch { background: rgba(251,191,36,0.18); color: var(--accent-yellow); }
+.signal.reference { background: rgba(34,197,94,0.18); color: var(--accent-green); }
+.news-card h3 { font-size: 1.06rem; font-weight: 700; line-height: 1.5; }
+.news-card .source { font-size: 0.72rem; color: var(--text-tertiary); font-family: var(--font-mono); margin-bottom: 10px; }
+.news-card .body { font-size: 0.94rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px; }
+.news-card .body strong { color: var(--text-primary); }
+.news-card .body .highlight { color: var(--accent-cyan); font-weight: 600; }
+.news-card .en-body { font-size: 0.86rem; color: var(--text-tertiary); line-height: 1.6; margin-bottom: 10px; font-style: italic; }
+.news-card .link-row { font-size: 0.78rem; }
+.news-card .link-row a { color: var(--accent-cyan); text-decoration: none; font-family: var(--font-mono); }
+.news-card .link-row a:hover { text-decoration: underline; }
+.news-card .fresh-tag { display: inline-block; font-size: 0.64rem; background: rgba(0,212,255,0.10); color: var(--accent-cyan); padding: 2px 6px; border-radius: 3px; font-family: var(--font-mono); font-weight: 600; margin-left: 6px; }
+
+.action-panel { background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(74,144,255,0.08)); border: 1px solid var(--border-color); border-radius: 14px; padding: 22px 26px; margin-bottom: 36px; }
+.action-panel .title { font-size: 0.72rem; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; font-family: var(--font-mono); }
+.action-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.action-item:last-child { margin-bottom: 0; }
+.action-num { background: var(--accent-cyan); color: var(--bg-primary); font-size: 0.72rem; font-weight: 800; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font-mono); }
+.action-text { font-size: 0.94rem; color: var(--text-primary); line-height: 1.6; }
+
+.one-more-thing { background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,61,142,0.08)); border: 1px solid rgba(255,107,53,0.35); border-radius: 14px; padding: 22px 28px; margin-bottom: 36px; }
+.one-more-thing .label { font-size: 0.72rem; color: var(--accent-orange); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; font-family: var(--font-mono); }
+.one-more-thing .text { font-size: 1.02rem; line-height: 1.8; }
+.one-more-thing .text strong { color: var(--accent-orange); }
+
+.footer { text-align: center; padding: 32px 0; border-top: 1px solid var(--border-color); color: var(--text-tertiary); font-size: 0.78rem; }
+.footer a { color: var(--accent-cyan); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  .container { padding: 12px 12px; }
+  .hero { padding: 32px 0 24px; }
+  .hero h1 { font-size: 1.6rem; }
+  .hero .subtitle { font-size: 0.88rem; }
+  .verdict-box { padding: 16px 18px; }
+  .verdict-box .text { font-size: 0.94rem; }
+  .kpi-panel { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .kpi-card { padding: 12px 8px; }
+  .kpi-value { font-size: 1.3rem; }
+  .kpi-label { font-size: 0.64rem; }
+  .filter-bar { gap: 6px; }
+  .filter-btn { padding: 5px 10px; font-size: 0.7rem; }
+  .news-card { padding: 14px 16px; }
+  .news-card h3 { font-size: 0.96rem; }
+  .news-card .body { font-size: 0.86rem; }
+  .news-card .en-body { font-size: 0.8rem; }
+  .action-panel { padding: 16px 18px; }
+  .action-text { font-size: 0.86rem; }
+  .one-more-thing { padding: 16px 18px; }
+  .one-more-thing .text { font-size: 0.92rem; }
+  .module-header h2 { font-size: 1.1rem; }
+}
+@media (max-width: 480px) {
+  .kpi-panel { grid-template-columns: repeat(2, 1fr); }
+  .kpi-card { min-width: 0; }
+  .filter-label { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="hero">
+<div class="date">2026-06-30</div>
+<h1>WB早报 · Sports × AI Radar</h1>
+<div class="subtitle">运动鞋服 × 纺织工艺 × 品牌营销 × AI工具 × 组织变革 × 跨圈层</div>
+</div>
+
+<div class="verdict-box">
+<div class="label">🧭 核心判断</div>
+<div class="text">
+<span class="highlight">AI Agent进入规模化验证期</span>——麦肯锡报告揭示仅6% GBS实现高级技术价值，企业AI落地效果不及预期；GPT-5.6发布开启价格战（Sol为Claude Fable 5一半），但受限于政府安全审查仅向"可信合作伙伴"开放。<span class="highlight">运动零售三分天下</span>——世界杯驱动品牌分化，便利店/超市增长6.8%/3.6%vs百货/专卖店下降1.8%/7.6%，离生活更近的渠道更有韧性。
+<strong class="en">McKinsey: Only 6% GBS achieve advanced AI value. GPT-5.6 triggers pricing war, but limited to "trusted partners". Sports retail: convenience stores +6.8% vs department stores -1.8%.</strong>
+</div>
+</div>
+
+<div class="kpi-panel">
+<div class="kpi-card">
+<div class="kpi-value cyan">6%</div>
+<div class="kpi-label">GBS实现高级AI价值</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-value orange">72%</div>
+<div class="kpi-label">企业受地缘政治影响</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-value purple">55%</div>
+<div class="kpi-label">信AI带来指数增长</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-value pink">46%</div>
+<div class="kpi-label">员工担忧AI取代</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-value green">21.5%</div>
+<div class="kpi-label">英伟达交换机份额</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-value blue">$5/M</div>
+<div class="kpi-label">GPT-5.6 Sol输入价</div>
+</div>
+</div>
+
+<div class="filter-bar">
+<span class="filter-label">信号筛选:</span>
+<button class="filter-btn active" data-filter="all">全部</button>
+<button class="filter-btn signal-red" data-filter="critical">🔴 Critical</button>
+<button class="filter-btn signal-yellow" data-filter="watch">🟡 Watch</button>
+<button class="filter-btn signal-green" data-filter="reference">🟢 Reference</button>
+</div>
+
+<div class="module-section">
+<div class="module-header">
+</div>
+
+<!-- M1 运动鞋服 -->
+<div class="module-section" data-module="m1">
+<div class="module-header">
+<span><span class="module-tag m1">M1</span><h2>运动鞋服</h2></span>
+<button class="toggle" onclick="this.closest('.module-section').classList.toggle('collapsed')">收起</button>
+</div>
+
+<div class="news-card" data-signal="critical">
+<div class="card-header">
+<span class="signal critical">🔴 Critical</span>
+<span class="fresh-tag">72h内</span>
+</div>
+<h3>Nike X2 2026世界杯联名系列正式发售</h3>
+<div class="source">Dealmoon · 2026-06-29</div>
+<div class="body">
+Nike正式揭晓2026世界杯"X2"联名系列，联合七大国家队与知名文化合作伙伴，通过"国家队+文化创意+社区组织"三重模式打造。携手Palace、NOCTA、Jacquemus、Patta、Peaceminusone、Slawn等重磅潮牌，覆盖球衣、球鞋及生活方式品类。中国区Snkrs确认6月18日发售，随时突袭。
+</div>
+<div class="en-body">
+Nike launches "X2" World Cup collaboration series with 7 national teams and top streetwear brands including Palace, NOCTA, Jacquemus. Chinese Snkrs confirmed June 18 release with potential surprise drops.</div>
+<div class="link-row"><a href="https://www.dealmoon.com/cn/new-release-nike-x2-2026-world-cup-collaboration-roundup/5899424.html" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="watch">
+<div class="card-header">
+<span class="signal watch">🟡 Watch</span>
+</div>
+<h3>安踏体育首次突破800亿营收大关</h3>
+<div class="source">国盛证券 · 2026-04-03</div>
+<div class="body">
+2026年运动鞋服行业研究显示，合计营收1351亿，安踏首次突破800亿营收大关，361度净利润增速领跑全场。行业在赛事红利与细分赛道高增长驱动下，整体规模有望实现中高单位数增长。
+</div>
+<div class="en-body">
+Anta Sports surpasses 80 billion RMB revenue for first time. Industry expected to achieve mid-to-high single-digit growth driven by sporting events and niche segments.</div>
+<div class="link-row"><a href="https://www.baogaobox.com/insights/260402000026623.html" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="watch">
+<div class="card-header">
+<span class="signal watch">🟡 Watch</span>
+</div>
+<h3>adidas「先锋运动」26秋季新品发布</h3>
+<div class="source">qsina · 2026-06-18</div>
+<div class="body">
+adidas「先锋运动」携王安宇先锋演绎26秋季新品，将于6月起陆续发售。可前往adidas「先锋运动」独立店铺及官方商城、微信小程序、天猫旗舰店、APP等官方渠道了解发售信息。
+</div>
+<div class="en-body">
+adidas "Pioneer Sports" Fall 2026 collection drops starting June, featuring brand ambassador Wang Anyu. Available at flagship stores and official e-commerce channels.</div>
+<div class="link-row"><a href="https://www.qsina.cn/mudedi/2026/0621/37955.html" target="_blank">查看原文 →</a></div>
+</div>
+</div>
+
+<!-- M2 纺织工艺 -->
+<div class="module-section" data-module="m2">
+<div class="module-header">
+<span><span class="module-tag m2">M2</span><h2>纺织工艺</h2></span>
+<button class="toggle" onclick="this.closest('.module-section').classList.toggle('collapsed')">收起</button>
+</div>
+
+<div class="news-card" data-signal="watch">
+<div class="card-header">
+<span class="signal watch">🟡 Watch</span>
+</div>
+<h3>AI重构纺织产业：工信部六部门印发数字化转型实施方案</h3>
+<div class="source">新华社 · 2026-03-18</div>
+<div class="body">
+工业和信息化部等六部门印发《纺织工业数字化转型实施方案》，明确深化AI赋能应用重点任务。中国纺织工业联合会会长孙瑞哲表示，AI将重构纺织产业的市场逻辑和产业生态，从时尚设计、材料研发到工艺创新、管理创新，通过数据构建高效创新体系。
+</div>
+<div class="en-body">
+China's MIIT issues textile industry digital transformation plan, focusing on AI empowerment. AI will reshape market logic and industrial ecology across fashion design, material R&D, and process innovation.</div>
+<div class="link-row"><a href="https://baijiahao.baidu.com/s?id=1859959857387640541&wfr=spider&for=pc" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="reference">
+<div class="card-header">
+<span class="signal reference">🟢 Reference</span>
+</div>
+<h3>2026 Intertextile大湾区国际纺织面料及辅料博览会</h3>
+<div class="source">百度百科 · 2026-06-09</div>
+<div class="body">
+2026 Intertextile大湾区国际纺织面料及辅料博览会于6月9日至11日在深圳会展中心举办，与Yarn Expo、PH Value同期同地举行。集结近1000家海内外企业，覆盖5万平方米展示空间，贯通从纤维原料、面辅料到成衣设计的产业链条。
+</div>
+<div class="en-body">
+Intertextile Greater Bay Area textile expo returns June 9-11 in Shenzhen, gathering nearly 1,000 domestic and international exhibitors across 50,000 sqm.</div>
+<div class="link-row"><a href="https://baike.baidu.com/item/2026Intertextile大湾区国际纺织面料及辅料博览会/67995519" target="_blank">查看原文 →</a></div>
+</div>
+</div>
+
+<!-- M3 包装与品牌 -->
+<div class="module-section" data-module="m3">
+<div class="module-header">
+<span><span class="module-tag m3">M3</span><h2>包装与品牌</h2></span>
+<button class="toggle" onclick="this.closest('.module-section').classList.toggle('collapsed')">收起</button>
+</div>
+
+<div class="news-card" data-signal="reference">
+<div class="card-header">
+<span class="signal reference">🟢 Reference</span>
+</div>
+<h3>CIPPF 2026上海国际印刷包装展览会</h3>
+<div class="source">CIPPF官网 · 2026-06-02</div>
+<div class="body">
+CIPPF上海国际印刷包装展览会于6月2日至4日在上海世博展览馆举办，搭建覆盖印刷、包装全产业链的高端商贸与技术交流平台。同期ProPak China 6月15-17日举办，20万㎡超大规模千家品牌齐聚虹桥。
+</div>
+<div class="en-body">
+CIPPF 2026 Shanghai International Print & Packaging Exhibition runs June 2-4 at Shanghai World Expo Exhibition Center, covering full industry chain. ProPak China follows June 15-17.</div>
+<div class="link-row"><a href="https://www.cippf.cn/652.html" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="reference">
+<div class="card-header">
+<span class="signal reference">🟢 Reference</span>
+</div>
+<h3>2026中国消费零售市场十大关键趋势</h3>
+<div class="source">百度百科 · 2026-06-22</div>
+<div class="body">
+消费核心支点正在变化：价格与品质依旧重要，但情绪与体验正成为消费决策新衡量标准。零售渠道从冷冰冰的交易场所走向承载生活方式与情绪价值的空间。大卖场正在被重新塑造成小型目的地。
+</div>
+<div class="en-body">
+Consumer decision criteria shifting: emotion and experience becoming new benchmarks alongside price and quality. Retail channels transforming from transaction venues to lifestyle and emotional spaces.</div>
+<div class="link-row"><a href="https://baijiahao.baidu.com/s?id=1868677728649949905&wfr=spider&for=pc" target="_blank">查看原文 →</a></div>
+</div>
+</div>
+
+<!-- M4 AI工具 -->
+<div class="module-section" data-module="m4">
+<div class="module-header">
+<span><span class="module-tag m4">M4</span><h2>AI工具</h2></span>
+<button class="toggle" onclick="this.closest('.module-section').classList.toggle('collapsed')">收起</button>
+</div>
+
+<div class="news-card" data-signal="critical">
+<div class="card-header">
+<span class="signal critical">🔴 Critical</span>
+<span class="fresh-tag">72h内</span>
+</div>
+<h3>OpenAI发布GPT-5.6系列：Sol/Terra/Luna三档定价</h3>
+<div class="source">每日经济新闻 · 2026-06-29</div>
+<div class="body">
+当地时间6月26日，OpenAI正式发布GPT-5.6系列模型，包括旗舰版Sol、均衡版Terra和轻量版Luna。Sol在Terminal-Bench 2.1智能体编程基准测试中超过Anthropic Claude Mythos 5，定价为每百万输入Token 5美元、输出Token 30美元，约为Claude Fable 5的一半。受美国政府要求，目前仅向"可信合作伙伴"开放预览。
+</div>
+<div class="en-body">
+OpenAI launches GPT-5.6 series (Sol/Terra/Luna) on June 26. Sol outperforms Claude Mythos 5 on Terminal-Bench, priced at $5/M input tokens - half of Claude Fable 5. Currently limited to "trusted partners" per US government requirements.</div>
+<div class="link-row"><a href="https://www.nbd.com.cn/articles/2026-06-29/4439922.html" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="critical">
+<div class="card-header">
+<span class="signal critical">🔴 Critical</span>
+<span class="fresh-tag">72h内</span>
+</div>
+<h3>OpenAI发布首款自研AI芯片Jalapeno</h3>
+<div class="source">西部数码 · 2026-06-25</div>
+<divdiv class="body">
+北京时间6月25日，OpenAI正式发布首款自研AI推理芯片Jalapeno（哈拉贝诺辣椒），由OpenAI与博通（Broadcom）联合开发，专为大语言模型推理场景优化。九个月完成流片，展现AI算力自主化趋势。
+</div>
+<div class="en-body">
+OpenAI unveils first self-developed AI inference chip "Jalapeno" on June 25, co-developed with Broadcom. Tape-out completed in 9 months, signaling push for AI computing independence.</div>
+<div class="link-row"><a href="https://www.weste.net/2026/06-25/OpenAI-Jalapeno.html" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="watch">
+<div class="card-header">
+<span class="signal watch">🟡 Watch</span>
+</div>
+<h3>英伟达首次登顶全球数据中心交换机市场</h3>
+<div class="source">每日经济新闻 · 2026-06-27</div>
+<div class="body">
+据IDC数据，英伟达在2026财年第一季度首次成为全球数据中心以太网交换机市场营收冠军，季度营收达21亿美元，同比增长192.7%，市场份额升至21.5%，超越博通、思科等传统网络设备厂商。Spectrum-X平台持续获得超大规模云厂商及企业客户采用。
+</div>
+<div class="en-body">
+Nvidia becomes #1 global data center Ethernet switch vendor in Q1 FY2026 with $2.1B revenue (+192.7% YoY), 21.5% market share, surpassing Broadcom and Cisco.</div>
+<div class="link-row"><a href="https://www.nbd.com.cn/articles/2026-06-29/4439922.html" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="watch">
+<div class="card-header">
+<span class="signal watch">🟡 Watch</span>
+</div>
+<h3>谷歌Gemini因算力紧张限制使用</h3>
+<div class="source">每日经济新闻 · 2026-06-29</div>
+<div class="body">
+由于Gemini API需求快速增长，谷歌已开始收紧Gemini模型的算力资源分配，限制部分客户使用额度。Meta因对Gemini模型需求较高，未能获得所需算力配额，部分内部AI项目推进受影响。谷歌自5月起已实施基于算力额度的使用限制。
+</div>
+<div class="en-body">
+Google tightens Gemini API resource allocation due to rapid demand growth. Meta failed to secure required quota, affecting internal AI projects. Limits imposed since May.</div>
+<div class="link-row"><a href="https://www.nbd.com.cn/articles/2026-06-29/4439922.html" target="_blank">查看原文 →</a></div>
+</div>
+</div>
+
+<!-- M5 AI×组织 -->
+<div class="module-section" data-module="m5">
+<div class="module-header">
+<span><span class="module-tag m5">M5</span><h2>AI×组织</h2></span>
+<button class="toggle" onclick="this.closest('.module-section').classList.toggle('collapsed')">收起</button>
+</div>
+
+<div class="news-card" data-signal="critical">
+<div class="card-header">
+<span class="signal critical">🔴 Critical</span>
+</div>
+<h3>麦肯锡2026组织状况报告：AI成组织重构核心引擎</h3>
+<div class="source">McKinsey · 2026-06-16</div>
+<div class="body">
+麦肯锡发布《组织状况报告2026》，基于15国16行业超1万名高管调研，揭示三大力量：AI/自动化、不确定性、人力变化。仅6% GBS领导者实现高级技术全面价值，72%企业认为地缘政治影响决策。46%员工对AI存在担忧（偏见、版权、取代），44%担心监管伦理问题。
+</div>
+<div class="en-body">
+McKinsey State of Organizations 2026: Only 6% GBS leaders achieve full AI value. 72% say geopolitics affects decisions. 46% employees worry about AI (bias, copyright, replacement).</div>
+<div class="link-row"><a href="https://www.mckinsey.com.cn/2026%e9%ba%a6%e8%82%af%e9%94%a1%e7%bb%84%e7%bb%87%e7%8e%b0%e7%8a%b6%e6%8a%a5%e5%91%8a%ef%bc%9a%e6%94%b9%e5%8f%98%e7%bb%84%e7%bb%87%e6%9c%aa%e6%9d%a5%e7%9a%84%e4%b8%89%e8%82%a1%e5%8a%9b%e9%87%8f/" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="critical">
+<div class="card-header">
+<span class="signal critical">🔴 Critical</span>
+</div>
+<h3>2026中国企业AI人才与组织发展报告</h3>
+<div class="source">InfoQ · 2026-06</div>
+<div class="body">
+报告系统梳理2025企业级AI落地进展，揭示智能体规模化应用关键趋势。55%受访者相信员工熟练掌握AI可带来指数级生产力增长，48%认为可改善信息获取，47%认为可减少行政工作，46%认为可提升决策质量。企业进入"规模化验证期"，从试点验证迈向价值兑现。
+</div>
+<div class="en-body">
+55% believe AI proficiency drives exponential productivity growth. 48% see improved information access, 47% reduced admin work, 46% better decisions. Enterprises entering "scale verification period".</div>
+<div class="link-row"><a href="https://www.infoq.cn/article/UZTN39WZ81MhFteW9uDW" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="watch">
+<div class="card-header">
+<span class="signal watch">🟡 Watch</span>
+</div>
+<h3>WEF与埃森哲联合发布AI组织变革白皮书</h3>
+<div class="source">新浪财经 · 2026-06-24</div>
+<div class="body">
+世界经济论坛（WEF）与埃森哲联合发布《AI时代的组织变革》白皮书，汇集超450位跨行业高管实践经验，呈现25个企业案例，将AI驱动的组织变革组织为五个核心聚焦领域：客户体验、运营效率、创新与研发、风险管理、人才与文化。
+</div>
+<div class="en-body">
+WEF-Accenture whitepaper on AI organizational transformation gathers 450+ executives, presenting 25 cases across 5 focus areas: customer experience, operational efficiency, R&D, risk management, talent & culture.</div>
+<div class="link-row"><a href="https://finance.sina.com.cn/zl/china/2026-06-24/zl-inientua3071871.shtml" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="reference">
+<div class="card-header">
+<span class="signal reference">🟢 Reference</span>
+</div>
+<h3>安联人寿AI转型实践：5年2/3技能被重写</h3>
+<div class="source">McKinsey · 2026-06-16</div>
+<div class="body">
+德国保险巨头安联人寿AI融入承保、理赔和产品设计等核心业务。集团首席人力官直言"5年内我们所需的2/3技能都会被重写，而5年几乎就是明天"。全员上线AllianzGPT、开设AI课程，员工年均学习时间达60小时。
+</div>
+<div class="en-body">
+Allianz embeds AI in underwriting, claims, product design. CHRO: "2/3 of our skills will be rewritten in 5 years, and 5 years is almost tomorrow." 60 hours annual learning per employee.</div>
+<div class="link-row"><a href="https://www.mckinsey.com.cn/2026%e9%ba%a6%e8%82%af%e9%94%a1%e7%bb%84%e7%bb%87%e7%8e%b0%e7%8a%b6%e6%8a%a5%e5%91%8a%ef%bc%9a%e6%94%b9%e5%8f%98%e7%bb%84%e7%bb%87%e6%9c%aa%e6%9d%a5%e7%9a%84%e4%b8%89%e8%82%a1%e5%8a%9b%e9%87%8f/" target="_blank">查看原文 →</a></div>
+</div>
+</div>
+
+<!-- M6 跨圈层 -->
+<div class="module-section" data-module="m6">
+<div class="module-header">
+<span><span class="module-tag m6">M6</span><h2>跨圈层</h2></span>
+<button class="toggle" onclick="this.closest('.module-section').classList.toggle('collapsed')">收起</button>
+</div>
+
+<div class="news-card" data-signal="watch">
+<div class="card-header">
+<span class="signal watch">🟡 Watch</span>
+</div>
+<h3>2026上半年零售观察：消费理由越来越硬</h3>
+<div class="source">百度百科 · 2026-06-27</div>
+<div class="body">
+国家统计局数据显示，2026年1-5月百货店、专业店、品牌专卖店零售额分别下降1.8%、1.2%、7.6%；但便利店和超市分别增长6.8%、3.6%。消费者不是拒绝线下，而是在重新筛选线下——离生活更近、购买频次更高、需求更明确的业态更有韧性。
+</div>
+<div class="en-body">
+Jan-May 2026: Department stores -1.8%, specialty stores -1.2%, brand outlets -7.6%; convenience stores +6.8%, supermarkets +3.6%. Consumers filtering offline channels by proximity and purchase frequency.</div>
+<div class="link-row"><a href="https://baijiahao.baidu.com/s?id=1869120442072372429&wfr=spider&for=pc" target="_blank">查看原文 →</a></div>
+</div>
+
+<div class="news-card" data-signal="reference">
+<div class="card-header">
+<span class="signal reference">🟢 Reference</span>
+</div>
+<h3>马斯克拟收购光模块公司Mesh</h3>
+<div class="source">每日经济新闻 · 2026-06-26</div>
+<div class="body">
+据FTC披露文件，马斯克正考虑收购光模块初创公司Mesh，后者由三位前SpaceX工程师创立，今年2月完成5000万美元A轮融资。收购若完成，将进一步完善SpaceX在AI数据中心基础设施领域的布局。
+</div>
+<div class="en-body">Musk considering acquiring photonics startup Mesh (3 ex-SpaceX engineers, $50M Series A Feb 2026). Would strengthen SpaceX AI data center infrastructure.</div>
+<div class="link-row"><a href="https://www.nbd.com.cn/articles/2026-06-29/4439922.html" target="_blank">查看原文 →</a></div>
+</div>
+</div>
+
+<!-- 行动清单 -->
+<div class="action-panel">
+<div class="title">⚡ 行动清单</div>
+<div class="action-item">
+<div class="action-num">1</div>
+<div class="action-text">关注AI Agent落地节奏——麦肯锡数据显示仅6%企业实现高级价值，验证期拉长，需设定更现实的ROI预期</div>
+</div>
+<div class="action-item">
+<div class="action-num">2</div>
+<div class="action-text">世界杯营销窗口——Nike X2系列发售+安踏800亿里程碑，运动品牌需把握赛事驱动分化机遇</div>
+</div>
+<div class="action-item">
+<div class="action-num">3</div>
+<div class="action-text">技能重塑计划——参考安联案例，建立AI技能培训体系，员工年均学习目标60小时</div>
+</div>
+</div>
+
+<!-- One More Thing -->
+<div class="one-more-thing">
+<div class="label">🔮 One More Thing</div>
+<div class="text">
+<span class="highlight">英伟达21.5%交换机份额背后的算力博弈</span>——英伟达首次超越博通/思科登顶数据中心交换机市场，192.7%同比增速背后是GPU网络协同设计（Spectrum-X）战略的成功。同时OpenAI自研芯片Jalapeno发布，算力自主化趋势加速。算力供给仍是最稀缺资源，企业需提前锁定AI算力供应。
+<strong class="en">Nvidia's 21.5% switch market share + 192.7% YoY growth reflects GPU-network co-design strategy. Combined with OpenAI's Jalapeño chip, computing autonomy accelerates. Computing power remains the scarcest resource.</strong>
+</div>
+</div>
+
+<div class="footer">
+<p>Generated by WB早报生产系统 v2.6 | <a href="https://coinxu000-droid.github.io/wb-sports-ai-radar/" target="_blank">GitHub Pages</a></p>
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.news-card').forEach(card => {
+      if (filter === 'all' || card.dataset.signal === filter) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
